@@ -9,11 +9,13 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+use Hyperf\Server\CoroutineServer;
 use Hyperf\Server\Server;
 use Hyperf\Server\SwooleEvent;
 
 return [
     'mode' => SWOOLE_BASE,
+    'type' => CoroutineServer::class,
     'servers' => [
         [
             'name' => 'http',
@@ -28,7 +30,7 @@ return [
     ],
     'settings' => [
         'enable_coroutine' => true,
-        'worker_num' => 4,
+        'worker_num' => 1,
         'pid_file' => BASE_PATH . '/runtime/hyperf.pid',
         'open_tcp_nodelay' => true,
         'max_coroutine' => 100000,
