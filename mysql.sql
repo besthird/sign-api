@@ -128,7 +128,7 @@ CREATE TABLE `sign_user` (
   `meeting_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '签到类型1签到2签退3补签到4补签退',
-  `fileld_text` json NOT NULL COMMENT '自定义字段内容',
+  `filed_text` json NOT NULL COMMENT '自定义字段内容',
   `wifi` varchar(255) NOT NULL DEFAULT '' COMMENT 'wifi',
   `address` varchar(255) NOT NULL DEFAULT '' COMMENT '位置签到',
   `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '拍照签到',
