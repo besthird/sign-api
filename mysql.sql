@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-08-18 06:39:07 +0000
+# Generation Time: 2020-08-18 08:13:59 +0000
 # ************************************************************
 
 
@@ -168,23 +168,35 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
-  `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
-  `profession` varchar(64) NOT NULL DEFAULT '' COMMENT '职业',
-  `openid` varchar(32) NOT NULL COMMENT 'openid',
-  `phone` varchar(11) NOT NULL COMMENT '手机号',
-  `email` varchar(32) NOT NULL COMMENT '邮件',
   `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `sex` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别1男2女',
   `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '微信昵称',
-  `head_img` varchar(255) NOT NULL DEFAULT '' COMMENT '微信头像',
+  `profession` varchar(64) NOT NULL DEFAULT '' COMMENT '职业',
+  `gender` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别0未知1男2女',
+  `head_img` varchar(256) NOT NULL DEFAULT '' COMMENT '头像',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `phone` (`phone`),
-  UNIQUE KEY `openid` (`openid`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+
+
+# Dump of table user_oauth
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `user_oauth`;
+
+CREATE TABLE `user_oauth` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL COMMENT '用户ID',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '授权类型 0微信 1手机 2邮箱',
+  `oauth` varchar(128) NOT NULL DEFAULT '' COMMENT '授权信息',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `oauth` (`oauth`,`type`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户授权表';
 
 
 

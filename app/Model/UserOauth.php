@@ -13,35 +13,32 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $username 用户名
- * @property string $password 密码
- * @property string $nikename 微信昵称
- * @property string $profession 职业
- * @property int $gender 性别0未知1男2女
- * @property string $head_img 头像
+ * @property int $user_id 用户ID
+ * @property int $type 授权类型 0微信 1手机 2邮箱
+ * @property string $oauth 授权信息
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class User extends Model
+class UserOauth extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'user_oauth';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id', 'username', 'password', 'nikename', 'profession', 'gender', 'head_img', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'user_id', 'type', 'oauth', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'gender' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'type' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }
