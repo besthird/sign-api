@@ -13,15 +13,15 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property int $sign_id
- * @property int $meeting_id
- * @property int $user_id
- * @property int $type
- * @property string $filed_text
- * @property string $wifi
- * @property string $address
- * @property string $photo
- * @property string $qr_code
+ * @property int $sign_id 签到id
+ * @property int $meeting_id 会议id
+ * @property int $user_id 用户id
+ * @property int $type 签到类型1签到2签退3补签到4补签退
+ * @property string $filed_text 自定义字段内容
+ * @property string $wifi wifi
+ * @property string $address 位置签到
+ * @property string $photo 拍照签到
+ * @property string $qr_code 二维码签到
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

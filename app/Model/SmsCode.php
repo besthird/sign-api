@@ -13,9 +13,9 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $phone
- * @property string $code
- * @property int $status
+ * @property string $phone 手机号
+ * @property string $code 验证码
+ * @property int $status 0未使用1使用
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

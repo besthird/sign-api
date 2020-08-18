@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property int $sign_id
- * @property string $field_key
- * @property string $field_des
- * @property int $is_required
+ * @property int $sign_id 签到id
+ * @property string $field_key 字段名称
+ * @property string $field_des 字段描述
+ * @property int $is_required 0选填1必填
  */
 class SignField extends Model
 {

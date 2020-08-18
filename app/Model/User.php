@@ -13,16 +13,16 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $username
- * @property string $wechat_code
- * @property string $profession
- * @property string $openid
- * @property string $phone
- * @property string $email
- * @property string $password
- * @property int $sex
- * @property string $nikename
- * @property string $head_img
+ * @property string $username 用户名
+ * @property string $wechat_code 微信号
+ * @property string $profession 职业
+ * @property string $openid openid
+ * @property string $phone 手机号
+ * @property string $email 邮件
+ * @property string $password 密码
+ * @property int $sex 性别1男2女
+ * @property string $nikename 微信昵称
+ * @property string $head_img 微信头像
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

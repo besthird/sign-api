@@ -13,19 +13,19 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $title
- * @property string $content
- * @property int $user_id
- * @property int $meeting_id
- * @property int $type
- * @property int $is_push
- * @property int $number_people
- * @property string $file
- * @property string $start_time
- * @property string $end_time
- * @property int $is_del
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property string $title 活动标题
+ * @property string $content 活动内容
+ * @property int $user_id 用户ID
+ * @property int $meeting_id 会议id
+ * @property int $type 1签到2签退3补签到4补签退
+ * @property int $is_push 是否发布0否1发布
+ * @property int $number_people 参会人数0为无限制
+ * @property string $file 活动文件
+ * @property string $start_time 签到开始时间
+ * @property string $end_time 签到结束时间
+ * @property int $is_del 是否删除0未删除1删除
+ * @property \Carbon\Carbon $created_at 签到时间
+ * @property \Carbon\Carbon $updated_at 更新时间
  */
 class Sign extends Model
 {

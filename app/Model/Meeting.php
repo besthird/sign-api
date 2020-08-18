@@ -13,10 +13,10 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property int $user_id
- * @property string $title
- * @property string $recording_url
- * @property string $note
+ * @property int $user_id 用户id
+ * @property string $title 会议标题
+ * @property string $recording_url 录音地址
+ * @property string $note 笔记
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

@@ -13,10 +13,10 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $image
- * @property string $content
- * @property string $phone
- * @property int $user_id
+ * @property string $image 图片
+ * @property string $content 内容
+ * @property string $phone 联系电话
+ * @property int $user_id 用户id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

@@ -13,7 +13,7 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $about
+ * @property string $about 联系我们
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
