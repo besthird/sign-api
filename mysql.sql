@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-08-18 08:13:59 +0000
+# Generation Time: 2020-08-18 08:44:08 +0000
 # ************************************************************
 
 
@@ -74,29 +74,23 @@ CREATE TABLE `meeting` (
 
 
 
-# Dump of table sign
+# Dump of table meeting_template
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `sign`;
+DROP TABLE IF EXISTS `meeting_template`;
 
-CREATE TABLE `sign` (
+CREATE TABLE `meeting_template` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
   `title` varchar(64) NOT NULL DEFAULT '' COMMENT '活动标题',
   `content` text COMMENT '活动内容',
-  `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `meeting_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
   `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1签到2签退3补签到4补签退',
-  `is_push` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否发布0否1发布',
-  `number_people` int(10) NOT NULL DEFAULT '0' COMMENT '参会人数0为无限制',
-  `file` varchar(255) NOT NULL DEFAULT '' COMMENT '活动文件',
-  `start_time` datetime NOT NULL COMMENT '签到开始时间',
-  `end_time` datetime NOT NULL COMMENT '签到结束时间',
-  `is_del` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除0未删除1删除',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否发布0否1发布',
+  `user_limit` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '参会人数0为无限制',
   `created_at` datetime DEFAULT NULL COMMENT '签到时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `note_id` (`meeting_id`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到模板表';
 
 
