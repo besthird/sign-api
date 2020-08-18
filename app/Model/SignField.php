@@ -12,34 +12,31 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property int $id
- * @property string $image
- * @property string $content
- * @property string $phone
- * @property int $user_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property int $sign_id
+ * @property string $field_key
+ * @property string $field_des
+ * @property int $is_required
  */
-class Feedback extends Model
+class SignField extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'feedback';
+    protected $table = 'sign_field';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id', 'image', 'content', 'phone', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['sign_id', 'field_key', 'field_des', 'is_required'];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['sign_id' => 'integer', 'is_required' => 'integer'];
 }

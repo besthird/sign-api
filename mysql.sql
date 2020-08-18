@@ -1,24 +1,31 @@
-/*
-Navicat MySQL Data Transfer
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 5446
+#
+# https://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: 127.0.0.1 (MySQL 5.7.30)
+# Database: sign
+# Generation Time: 2020-08-18 06:39:07 +0000
+# ************************************************************
 
-Source Server         : 127.0.0.1
-Source Server Version : 50726
-Source Host           : localhost:3306
-Source Database       : sign
 
-Target Server Type    : MYSQL
-Target Server Version : 50726
-File Encoding         : 65001
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+SET NAMES utf8mb4;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-Date: 2020-08-18 10:34:58
-*/
 
-SET FOREIGN_KEY_CHECKS=0;
+# Dump of table config
+# ------------------------------------------------------------
 
--- ----------------------------
--- Table structure for config
--- ----------------------------
 DROP TABLE IF EXISTS `config`;
+
 CREATE TABLE `config` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `about` varchar(255) NOT NULL COMMENT '联系我们',
@@ -27,14 +34,13 @@ CREATE TABLE `config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配置表';
 
--- ----------------------------
--- Records of config
--- ----------------------------
 
--- ----------------------------
--- Table structure for feedback
--- ----------------------------
+
+# Dump of table feedback
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `feedback`;
+
 CREATE TABLE `feedback` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL DEFAULT '' COMMENT '图片',
@@ -47,14 +53,13 @@ CREATE TABLE `feedback` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='意见反馈表';
 
--- ----------------------------
--- Records of feedback
--- ----------------------------
 
--- ----------------------------
--- Table structure for meeting
--- ----------------------------
+
+# Dump of table meeting
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `meeting`;
+
 CREATE TABLE `meeting` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
@@ -67,14 +72,13 @@ CREATE TABLE `meeting` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会议';
 
--- ----------------------------
--- Records of meeting
--- ----------------------------
 
--- ----------------------------
--- Table structure for sign
--- ----------------------------
+
+# Dump of table sign
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `sign`;
+
 CREATE TABLE `sign` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(64) NOT NULL DEFAULT '' COMMENT '活动标题',
@@ -95,33 +99,28 @@ CREATE TABLE `sign` (
   KEY `note_id` (`meeting_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到模板表';
 
--- ----------------------------
--- Records of sign
--- ----------------------------
 
--- ----------------------------
--- Table structure for sign_field
--- ----------------------------
+
+# Dump of table sign_field
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `sign_field`;
+
 CREATE TABLE `sign_field` (
   `sign_id` int(10) NOT NULL DEFAULT '0' COMMENT '签到id',
   `field_key` varchar(64) NOT NULL DEFAULT '' COMMENT '字段名称',
   `field_des` varchar(64) NOT NULL DEFAULT '' COMMENT '字段描述',
   `is_required` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0选填1必填',
   KEY `sign_id` (`sign_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='签到自定义字段';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到自定义字段';
 
--- ----------------------------
--- Records of sign_field
--- ----------------------------
-INSERT INTO `sign_field` VALUES ('0', 'name', '姓名', '1');
-INSERT INTO `sign_field` VALUES ('0', 'phone', '手机号', '1');
-INSERT INTO `sign_field` VALUES ('0', 'wechat_code', '微信号', '0');
 
--- ----------------------------
--- Table structure for sign_user
--- ----------------------------
+
+# Dump of table sign_user
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `sign_user`;
+
 CREATE TABLE `sign_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sign_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签到id',
@@ -139,16 +138,15 @@ CREATE TABLE `sign_user` (
   KEY `sign_id` (`sign_id`),
   KEY `user_id` (`user_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
 
--- ----------------------------
--- Records of sign_user
--- ----------------------------
 
--- ----------------------------
--- Table structure for sms_code
--- ----------------------------
+
+# Dump of table sms_code
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `sms_code`;
+
 CREATE TABLE `sms_code` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `phone` varchar(11) NOT NULL COMMENT '手机号',
@@ -158,16 +156,15 @@ CREATE TABLE `sms_code` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `phone` (`phone`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='短信记录表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='短信记录表';
 
--- ----------------------------
--- Records of sms_code
--- ----------------------------
 
--- ----------------------------
--- Table structure for user
--- ----------------------------
+
+# Dump of table user
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `user`;
+
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
@@ -189,6 +186,12 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
--- ----------------------------
--- Records of user
--- ----------------------------
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

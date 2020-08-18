@@ -13,33 +13,38 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $image
- * @property string $content
- * @property string $phone
+ * @property int $sign_id
+ * @property int $meeting_id
  * @property int $user_id
+ * @property int $type
+ * @property string $filed_text
+ * @property string $wifi
+ * @property string $address
+ * @property string $photo
+ * @property string $qr_code
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class Feedback extends Model
+class SignUser extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'feedback';
+    protected $table = 'sign_user';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id', 'image', 'content', 'phone', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'sign_id', 'meeting_id', 'user_id', 'type', 'filed_text', 'wifi', 'address', 'photo', 'qr_code', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'sign_id' => 'integer', 'meeting_id' => 'integer', 'user_id' => 'integer', 'type' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }
