@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-08-18 08:44:08 +0000
+# Generation Time: 2020-08-21 07:51:55 +0000
 # ************************************************************
 
 
@@ -45,7 +45,7 @@ CREATE TABLE `feedback` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL DEFAULT '' COMMENT '图片',
   `content` varchar(2048) NOT NULL DEFAULT '' COMMENT '内容',
-  `phone` varchar(11) NOT NULL DEFAULT '' COMMENT '联系电话',
+  `mobile` varchar(11) NOT NULL DEFAULT '' COMMENT '联系电话',
   `user_id` bigint(11) NOT NULL COMMENT '用户id',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -61,16 +61,22 @@ CREATE TABLE `feedback` (
 DROP TABLE IF EXISTS `meeting`;
 
 CREATE TABLE `meeting` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
-  `title` varchar(32) NOT NULL COMMENT '会议标题',
-  `recording_url` varchar(255) NOT NULL DEFAULT '' COMMENT '录音地址',
-  `note` varchar(255) NOT NULL COMMENT '笔记',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `title` varchar(64) NOT NULL DEFAULT '' COMMENT '活动标题',
+  `content` text COMMENT '活动内容',
+  `sign_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1签到2签退3签到签退',
+  `user_limit` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '参会人数0为无限制',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否发布0否1发布',
+  `sign_in_btime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签到开始时间',
+  `sign_in_etime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签到结束时间',
+  `sign_out_btime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签退开始时间',
+  `sign_out_etime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签退结束时间',
+  `created_at` datetime DEFAULT NULL COMMENT '签到时间',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会议';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到模板表';
 
 
 
@@ -82,11 +88,14 @@ DROP TABLE IF EXISTS `meeting_template`;
 CREATE TABLE `meeting_template` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `meeting_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '相关会议ID',
   `title` varchar(64) NOT NULL DEFAULT '' COMMENT '活动标题',
   `content` text COMMENT '活动内容',
-  `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1签到2签退3补签到4补签退',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否发布0否1发布',
+  `sign_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1签到2签退3签到签退',
+  `sign_fields` json DEFAULT NULL COMMENT '签到所需字段',
+  `sign_rules` json DEFAULT NULL COMMENT '签到规则',
   `user_limit` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '参会人数0为无限制',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否发布0否1发布',
   `created_at` datetime DEFAULT NULL COMMENT '签到时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
@@ -101,35 +110,54 @@ CREATE TABLE `meeting_template` (
 DROP TABLE IF EXISTS `sign_field`;
 
 CREATE TABLE `sign_field` (
-  `sign_id` int(10) NOT NULL DEFAULT '0' COMMENT '签到id',
-  `field_key` varchar(64) NOT NULL DEFAULT '' COMMENT '字段名称',
-  `field_des` varchar(64) NOT NULL DEFAULT '' COMMENT '字段描述',
-  `is_required` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0选填1必填',
-  KEY `sign_id` (`sign_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到自定义字段';
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `meeting_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '会议ID',
+  `key` varchar(32) NOT NULL DEFAULT '' COMMENT '签到KEY',
+  `title` varchar(32) NOT NULL DEFAULT '' COMMENT '字段标题',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0填写1图片',
+  `required` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否必填',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到所需字段';
 
 
 
-# Dump of table sign_user
+# Dump of table sign_rule
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `sign_user`;
+DROP TABLE IF EXISTS `sign_rule`;
 
-CREATE TABLE `sign_user` (
+CREATE TABLE `sign_rule` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `meeting_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '会议ID',
+  `sign_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '1签到 2签退',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '签到类型 0访问1Wifi2geo',
+  `data` json DEFAULT NULL COMMENT '签到相关数据',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到规则';
+
+
+
+# Dump of table sign
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `sign`;
+
+CREATE TABLE `sign` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `sign_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '签到id',
   `meeting_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '签到类型1签到2签退3补签到4补签退',
-  `filed_text` json NOT NULL COMMENT '自定义字段内容',
-  `wifi` varchar(255) NOT NULL DEFAULT '' COMMENT 'wifi',
-  `address` varchar(255) NOT NULL DEFAULT '' COMMENT '位置签到',
-  `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '拍照签到',
-  `qr_code` varchar(255) NOT NULL DEFAULT '' COMMENT '二维码签到',
+  `nickname` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
+  `mobile` varchar(32) NOT NULL DEFAULT '' COMMENT '手机号',
+  `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
+  `data` json NOT NULL COMMENT '自定义字段内容',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `sign_id` (`sign_id`),
   KEY `user_id` (`user_id`),
   KEY `meeting_id` (`meeting_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
@@ -163,7 +191,9 @@ CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
   `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '微信昵称',
+  `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
+  `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '手机号',
+  `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
   `profession` varchar(64) NOT NULL DEFAULT '' COMMENT '职业',
   `gender` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别0未知1男2女',
   `head_img` varchar(256) NOT NULL DEFAULT '' COMMENT '头像',

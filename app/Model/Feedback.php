@@ -15,7 +15,7 @@ namespace App\Model;
  * @property int $id
  * @property string $image 图片
  * @property string $content 内容
- * @property string $phone 联系电话
+ * @property string $mobile 联系电话
  * @property int $user_id 用户id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -34,7 +34,7 @@ class Feedback extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'image', 'content', 'phone', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'image', 'content', 'mobile', 'user_id', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
