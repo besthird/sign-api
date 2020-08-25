@@ -11,10 +11,8 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use App\Client\RedisString;
 use App\Request\UserLoginRequest;
 use App\Service\UserService;
-use App\Utils\UserAuth;
 use Hyperf\Di\Annotation\Inject;
 
 class UserController extends Controller
@@ -32,7 +30,9 @@ class UserController extends Controller
 
         $result = $this->service->register($username, $password);
 
-        return $this->response->success();
+        return $this->response->success([
+            'token' => $result->getToken(),
+        ]);
     }
 
     /**
@@ -45,10 +45,8 @@ class UserController extends Controller
 
         $result = $this->service->login($username, $password);
 
-        // $token = di()->get(UserAuth::class)->getToken($result['id']);
-        //
-        // di()->get(RedisString::class)->setString($result['id'], $token);
-
-        return $this->response->success('');
+        return $this->response->success([
+            'token' => $result->getToken(),
+        ]);
     }
 }

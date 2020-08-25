@@ -38,8 +38,7 @@ class UserService extends Service
         $model->password = password_hash($password, PASSWORD_DEFAULT);
         $model->save();
 
-        // TODO: 返回用户 Token
-        return '';
+        return UserAuth::instance()->init($model);
     }
 
     public function login(string $username, string $password)
@@ -53,7 +52,6 @@ class UserService extends Service
             throw new BusinessException(ErrorCode::USERNAME_OR_PASSWORD_ERROR);
         }
 
-        // TODO: 返回用户 Token
-        return '';
+        return UserAuth::instance()->init($model);
     }
 }

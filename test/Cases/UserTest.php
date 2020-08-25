@@ -22,7 +22,7 @@ class UserTest extends HttpTestCase
 {
     public function testUserRegister()
     {
-        $res = $this->apiClient->post('/user/register', [
+        $res = $this->json('/user/register', [
             'username' => 'tester',
             'password' => md5('123456'),
         ]);
@@ -32,7 +32,7 @@ class UserTest extends HttpTestCase
 
     public function testUserLogin()
     {
-        $res = $this->apiClient->post('/user/login', [
+        $res = $this->json('/user/login', [
             'username' => 'tester',
             'password' => md5('123456'),
         ]);

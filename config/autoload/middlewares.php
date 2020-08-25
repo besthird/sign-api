@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 return [
     'http' => [
+        HyperfX\Utils\Middleware\DebugMiddleware::class,
         Hyperf\Validation\Middleware\ValidationMiddleware::class,
     ],
 ];
