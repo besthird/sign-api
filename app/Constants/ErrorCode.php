@@ -53,4 +53,9 @@ class ErrorCode extends AbstractConstants
      * @Message("密码错误")
      */
     const PASSWORD_ERROR = 1005;
+
+    /**
+     * @Message("用户名或密码错误")
+     */
+    const USERNAME_OR_PASSWORD_ERROR = 1006;
 }

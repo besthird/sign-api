@@ -13,7 +13,7 @@ namespace App\Request;
 
 use Hyperf\Validation\Request\FormRequest;
 
-class UserRegisterRequest extends FormRequest
+class UserLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

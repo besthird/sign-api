@@ -41,4 +41,19 @@ class UserService extends Service
         // TODO: 返回用户 Token
         return '';
     }
+
+    public function login(string $username, string $password)
+    {
+        $model = $this->dao->firstByUserName($username);
+        if ($model === null) {
+            throw new BusinessException(ErrorCode::USERNAME_OR_PASSWORD_ERROR);
+        }
+
+        if (! $model->verify($password)) {
+            throw new BusinessException(ErrorCode::USERNAME_OR_PASSWORD_ERROR);
+        }
+
+        // TODO: 返回用户 Token
+        return '';
+    }
 }

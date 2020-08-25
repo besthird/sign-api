@@ -46,4 +46,9 @@ class User extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'gender' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public function verify(string $password): bool
+    {
+        return password_verify($password, $this->password);
+    }
 }

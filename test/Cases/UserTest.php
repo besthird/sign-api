@@ -23,10 +23,20 @@ class UserTest extends HttpTestCase
     public function testUserRegister()
     {
         $res = $this->apiClient->post('/user/register', [
-            'username' => '单侧',
-            'password' => '123456',
+            'username' => 'tester',
+            'password' => md5('123456'),
         ]);
 
         $this->assertTrue(in_array($res['code'], [0, ErrorCode::USERNAME_EXIST_ERROR]));
+    }
+
+    public function testUserLogin()
+    {
+        $res = $this->apiClient->post('/user/login', [
+            'username' => 'tester',
+            'password' => md5('123456'),
+        ]);
+
+        $this->assertSame(0, $res['code']);
     }
 }
