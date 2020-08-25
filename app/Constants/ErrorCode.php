@@ -25,6 +25,11 @@ class ErrorCode extends AbstractConstants
     const SERVER_ERROR = 500;
 
     /**
+     * @Message("Token 已失效")
+     */
+    const TOKEN_INVALID = 700;
+
+    /**
      * @Message("参数错误")
      */
     const PARAMS_INVALID = 1000;
