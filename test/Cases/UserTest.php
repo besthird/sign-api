@@ -9,23 +9,24 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace HyperfTest\Cases\Api;
+namespace HyperfTest\Cases;
 
+use App\Constants\ErrorCode;
 use HyperfTest\HttpTestCase;
 
 /**
  * @internal
  * @coversNothing
  */
-class ApiUserTest extends HttpTestCase
+class UserTest extends HttpTestCase
 {
-    public function testUserLogin()
+    public function testUserRegister()
     {
-        $res = $this->apiClient->post('/api/user/login', [
+        $res = $this->apiClient->post('/user/register', [
             'username' => '单侧',
             'password' => '123456',
         ]);
 
-        $this->assertSame(0, $res['code']);
+        $this->assertTrue(in_array($res['code'], [0, ErrorCode::USERNAME_EXIST_ERROR]));
     }
 }

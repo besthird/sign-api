@@ -12,10 +12,10 @@ declare(strict_types=1);
 use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController::index');
+Router::post('/user/register', App\Controller\UserController::class . '::register');
 
 Router::addServer('http', function () {
     Router::addGroup('/api', function () {
-        Router::post('/user/register', 'App\Controller\Api\UserController::register');
         Router::post('/user/login', 'App\Controller\Api\UserController::login');
     });
 });
