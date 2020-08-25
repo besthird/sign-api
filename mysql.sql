@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-08-21 07:51:55 +0000
+# Generation Time: 2020-08-25 07:21:08 +0000
 # ************************************************************
 
 
@@ -104,6 +104,29 @@ CREATE TABLE `meeting_template` (
 
 
 
+# Dump of table sign
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `sign`;
+
+CREATE TABLE `sign` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `meeting_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
+  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '签到类型1签到2签退3补签到4补签退',
+  `nickname` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
+  `mobile` varchar(32) NOT NULL DEFAULT '' COMMENT '手机号',
+  `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
+  `data` json NOT NULL COMMENT '自定义字段内容',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `meeting_id` (`meeting_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
+
+
+
 # Dump of table sign_field
 # ------------------------------------------------------------
 
@@ -141,29 +164,6 @@ CREATE TABLE `sign_rule` (
 
 
 
-# Dump of table sign
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `sign`;
-
-CREATE TABLE `sign` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `meeting_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
-  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
-  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '签到类型1签到2签退3补签到4补签退',
-  `nickname` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
-  `mobile` varchar(32) NOT NULL DEFAULT '' COMMENT '手机号',
-  `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
-  `data` json NOT NULL COMMENT '自定义字段内容',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
-
-
-
 # Dump of table sms_code
 # ------------------------------------------------------------
 
@@ -190,7 +190,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
-  `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
+  `password` varchar(128) NOT NULL DEFAULT '' COMMENT '密码',
   `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '手机号',
   `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
