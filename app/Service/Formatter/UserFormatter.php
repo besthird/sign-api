@@ -26,6 +26,7 @@ class UserFormatter extends Formatter
             'profession' => $model->profession,
             'gender' => $model->gender,
             'head_img' => $model->head_img,
+            'registed' => $model->isRegisted(),
         ];
     }
 }

@@ -14,6 +14,7 @@ namespace App\Service;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\User;
+use App\Service\Dao\UserDao;
 use Hyperf\Redis\Redis;
 use Hyperf\Utils\Codec\Json;
 use Hyperf\Utils\Traits\StaticInstance;
@@ -34,8 +35,14 @@ class UserAuth
      */
     protected $token;
 
+    /**
+     * @var User
+     */
+    protected $user;
+
     public function init(User $user, ?string $token = null)
     {
+        $this->user = $user;
         $this->userId = $user->id;
         $this->token = $token ?? md5(uniqid());
 
@@ -74,6 +81,22 @@ class UserAuth
     public function getToken(): ?string
     {
         return $this->token;
+    }
+
+    public function getUser(): User
+    {
+        if ($this->user) {
+            return $this->user;
+        }
+
+        $userId = $this->build()->getUserId();
+
+        return $this->user = di()->get(UserDao::class)->first($userId, true);
+    }
+
+    public function isRegisted(): bool
+    {
+        return $this->getUser()->isRegisted();
     }
 
     protected function getRedisKey(): string

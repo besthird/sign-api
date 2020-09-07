@@ -15,3 +15,4 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController::
 Router::post('/user/register', App\Controller\UserController::class . '::register');
 Router::post('/user/login', App\Controller\UserController::class . '::login');
 Router::get('/user/info', App\Controller\UserController::class . '::info');
+Router::post('/user/finish-register', App\Controller\UserController::class . '::finishRegister');

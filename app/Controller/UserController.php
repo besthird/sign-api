@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Request\UserLoginRequest;
 use App\Service\Formatter\UserFormatter;
 use App\Service\UserAuth;
@@ -40,7 +42,22 @@ class UserController extends Controller
 
         return $this->response->success([
             'token' => $result->getToken(),
+            'registed' => $result->isRegisted(),
         ]);
+    }
+
+    public function finishRegister()
+    {
+        $username = $this->request->input('username');
+        if (empty($username)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, 'username is required.');
+        }
+
+        $userId = UserAuth::instance()->build()->getUserId();
+
+        $result = $this->service->finishRegister($userId, $username);
+
+        return $this->response->success($result);
     }
 
     /**
@@ -55,6 +72,7 @@ class UserController extends Controller
 
         return $this->response->success([
             'token' => $result->getToken(),
+            'registed' => $result->isRegisted(),
         ]);
     }
 

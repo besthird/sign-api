@@ -41,6 +41,17 @@ class UserService extends Service
         return UserAuth::instance()->init($model);
     }
 
+    public function finishRegister(int $userId, string $username)
+    {
+        $user = $this->dao->first($userId, true);
+        if (empty($user->username)) {
+            $user->username = $username;
+            $user->save();
+        }
+
+        return true;
+    }
+
     public function login(string $username, string $password)
     {
         $model = $this->dao->firstByUserName($username);

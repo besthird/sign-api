@@ -51,4 +51,9 @@ class User extends Model
     {
         return password_verify($password, $this->password);
     }
+
+    public function isRegisted(): bool
+    {
+        return ! empty($this->username);
+    }
 }

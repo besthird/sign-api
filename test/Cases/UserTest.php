@@ -31,6 +31,17 @@ class UserTest extends HttpTestCase
         $this->assertTrue(in_array($res['code'], [0, ErrorCode::USERNAME_EXIST_ERROR]));
     }
 
+    public function testUserFinishRegister()
+    {
+        $res = $this->json('/user/finish-register', [
+            'username' => 'tester',
+        ], [
+            UserAuth::X_TOKEN => $this->getToken(),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
     public function testUserLogin()
     {
         $res = $this->json('/user/login', [
