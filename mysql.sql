@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-08-25 07:21:08 +0000
+# Generation Time: 2020-09-07 10:01:08 +0000
 # ************************************************************
 
 
@@ -203,6 +203,15 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+
+INSERT INTO `user` (`id`, `username`, `password`, `nikename`, `mobile`, `wechat_code`, `profession`, `gender`, `head_img`, `created_at`, `updated_at`)
+VALUES
+	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','','','','',0,'','2020-08-25 14:53:16','2020-08-25 14:53:16');
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user_oauth
