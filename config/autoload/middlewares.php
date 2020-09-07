@@ -13,5 +13,6 @@ return [
     'http' => [
         HyperfX\Utils\Middleware\DebugMiddleware::class,
         Hyperf\Validation\Middleware\ValidationMiddleware::class,
+        App\Middleware\UserMiddleware::class,
     ],
 ];
