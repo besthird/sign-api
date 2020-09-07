@@ -50,3 +50,20 @@
 | 字段  |  类型  |   备注    |
 | :---: | :----: | :-------: |
 | token | string | 授权TOKEN |
+
+### 用户详情
+
+> GET /user/info
+
+- 返回参数
+
+| 字段  |  类型  |   备注    |
+| :---: | :----: | :-------: |
+| id | int | 用户ID |
+| username | string | 用户登录名 |
+| nickname | string | 用户昵称 |
+| mobile | string | 手机号 |
+| wechat_code | string | 微信号 |
+| profession | string | 职业 |
+| gender | int | 0未知 1男 2女 |
+| head_img | string | 头像 |

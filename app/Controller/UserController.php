@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Request\UserLoginRequest;
+use App\Service\Formatter\UserFormatter;
+use App\Service\UserAuth;
 use App\Service\UserService;
 use Hyperf\Di\Annotation\Inject;
 
@@ -22,6 +24,12 @@ class UserController extends Controller
      * @var UserService
      */
     protected $service;
+
+    /**
+     * @Inject
+     * @var UserFormatter
+     */
+    protected $formatter;
 
     public function register(UserLoginRequest $request)
     {
@@ -48,5 +56,19 @@ class UserController extends Controller
         return $this->response->success([
             'token' => $result->getToken(),
         ]);
+    }
+
+    /**
+     * 用户信息.
+     */
+    public function info()
+    {
+        $userId = UserAuth::instance()->build()->getUserId();
+
+        $model = $this->service->info($userId);
+
+        return $this->response->success(
+            $this->formatter->base($model)
+        );
     }
 }

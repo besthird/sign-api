@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace HyperfTest;
 
+use App\Service\Dao\UserDao;
+use App\Service\UserAuth;
 use Hyperf\Testing;
 use PHPUnit\Framework\TestCase;
 
@@ -28,6 +30,11 @@ abstract class HttpTestCase extends TestCase
      */
     protected $client;
 
+    /**
+     * @var string
+     */
+    protected $token;
+
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
@@ -37,5 +44,19 @@ abstract class HttpTestCase extends TestCase
     public function __call($name, $arguments)
     {
         return $this->client->{$name}(...$arguments);
+    }
+
+    public function getToken()
+    {
+        if ($this->token) {
+            return $this->token;
+        }
+
+        $userAuth = UserAuth::instance()->init(
+            di()->get(UserDao::class)->first(1),
+            'phpunit'
+        );
+
+        return $this->token = $userAuth->getToken();
     }
 }

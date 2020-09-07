@@ -54,4 +54,9 @@ class UserService extends Service
 
         return UserAuth::instance()->init($model);
     }
+
+    public function info(int $userId)
+    {
+        return $this->dao->first($userId, true);
+    }
 }

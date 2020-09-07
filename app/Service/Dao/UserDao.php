@@ -11,13 +11,24 @@ declare(strict_types=1);
  */
 namespace App\Service\Dao;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Model\User;
 use HyperfX\Utils\Service;
 
 class UserDao extends Service
 {
-    public function first()
+    /**
+     * @return null|User
+     */
+    public function first(int $id, bool $throw = false)
     {
+        $model = User::query()->find($id);
+        if (empty($model) && $throw) {
+            throw new BusinessException(ErrorCode::USER_NOT_EXIST);
+        }
+
+        return $model;
     }
 
     /**

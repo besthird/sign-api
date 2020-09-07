@@ -34,10 +34,10 @@ class UserAuth
      */
     protected $token;
 
-    public function init(User $user)
+    public function init(User $user, ?string $token = null)
     {
         $this->userId = $user->id;
-        $this->token = md5(uniqid());
+        $this->token = $token ?? md5(uniqid());
 
         di()->get(Redis::class)->set($this->getRedisKey(), Json::encode([
             'id' => $user->id,

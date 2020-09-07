@@ -35,29 +35,14 @@ class ErrorCode extends AbstractConstants
     const PARAMS_INVALID = 1000;
 
     /**
-     * @Message("用户已存在")
+     * @Message("用户名已存在")
      */
     const USERNAME_EXIST_ERROR = 1001;
 
     /**
-     * @Message("用户不能为空")
-     */
-    const USERNAME_EMPTY_ERROR = 1002;
-
-    /**
-     * @Message("密码不能为空")
-     */
-    const PASSWORD_EMPTY_ERROR = 1003;
-
-    /**
      * @Message("用户不存在")
      */
-    const USERNAME_NOT_EXIST_ERROR = 1004;
-
-    /**
-     * @Message("密码错误")
-     */
-    const PASSWORD_ERROR = 1005;
+    const USER_NOT_EXIST = 1002;
 
     /**
      * @Message("用户名或密码错误")

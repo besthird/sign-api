@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace HyperfTest\Cases;
 
 use App\Constants\ErrorCode;
+use App\Service\UserAuth;
 use HyperfTest\HttpTestCase;
 
 /**
@@ -35,6 +36,15 @@ class UserTest extends HttpTestCase
         $res = $this->json('/user/login', [
             'username' => 'tester',
             'password' => md5('123456'),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testUserInfo()
+    {
+        $res = $this->get('/user/info', [], [
+            UserAuth::X_TOKEN => $this->getToken(),
         ]);
 
         $this->assertSame(0, $res['code']);
