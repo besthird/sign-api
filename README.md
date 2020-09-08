@@ -30,10 +30,10 @@
 
 - 返回参数
 
-| 字段  |  类型  |   备注    |
-| :---: | :----: | :-------: |
-| token | string | 授权TOKEN |
-| registed | bool | 是否完成注册 |
+|   字段   |  类型  |     备注     |
+| :------: | :----: | :----------: |
+|  token   | string |  授权TOKEN   |
+| registed |  bool  | 是否完成注册 |
 
 ### 登录
 
@@ -48,10 +48,10 @@
 
 - 返回参数
 
-| 字段  |  类型  |   备注    |
-| :---: | :----: | :-------: |
-| token | string | 授权TOKEN |
-| registed | bool | 是否完成注册 |
+|   字段   |  类型  |     备注     |
+| :------: | :----: | :----------: |
+|  token   | string |  授权TOKEN   |
+| registed |  bool  | 是否完成注册 |
 
 ### 微信登录
 
@@ -59,16 +59,16 @@
 
 - 请求参数
 
-|   字段   |  类型  |            备注            |
-| :------: | :----: | :------------------------: |
-| token | string |           小程序授权TOKEN           |
+| 字段  |  类型  |      备注       |
+| :---: | :----: | :-------------: |
+| token | string | 小程序授权TOKEN |
 
 - 返回参数
 
-| 字段  |  类型  |   备注    |
-| :---: | :----: | :-------: |
-| token | string | 授权TOKEN |
-| registed | bool | 是否完成注册 |
+|   字段   |  类型  |     备注     |
+| :------: | :----: | :----------: |
+|  token   | string |  授权TOKEN   |
+| registed |  bool  | 是否完成注册 |
 
 ### 完成注册
 
@@ -76,9 +76,9 @@
 
 - 请求参数
 
-|   字段   |  类型  |            备注            |
-| :------: | :----: | :------------------------: |
-| username | string |           用户名           |
+|   字段   |  类型  |  备注  |
+| :------: | :----: | :----: |
+| username | string | 用户名 |
 
 ### 用户详情
 
@@ -86,13 +86,13 @@
 
 - 返回参数
 
-| 字段  |  类型  |   备注    |
-| :---: | :----: | :-------: |
-| id | int | 用户ID |
-| username | string | 用户登录名 |
-| nickname | string | 用户昵称 |
-| mobile | string | 手机号 |
-| wechat_code | string | 微信号 |
-| profession | string | 职业 |
-| gender | int | 0未知 1男 2女 |
-| head_img | string | 头像 |
+|    字段     |  类型  |     备注      |
+| :---------: | :----: | :-----------: |
+|     id      |  int   |    用户ID     |
+|  username   | string |  用户登录名   |
+|  nickname   | string |   用户昵称    |
+|   mobile    | string |    手机号     |
+| wechat_code | string |    微信号     |
+| profession  | string |     职业      |
+|   gender    |  int   | 0未知 1男 2女 |
+|  head_img   | string |     头像      |
