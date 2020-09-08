@@ -45,6 +45,11 @@ class ErrorCode extends AbstractConstants
     const USER_NOT_EXIST = 1002;
 
     /**
+     * @Message("微信 Token 已失效")
+     */
+    const WECHAT_TOKEN_INVALID = 1003;
+
+    /**
      * @Message("用户名或密码错误")
      */
     const USERNAME_OR_PASSWORD_ERROR = 1006;

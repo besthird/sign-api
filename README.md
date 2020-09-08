@@ -53,6 +53,23 @@
 | token | string | 授权TOKEN |
 | registed | bool | 是否完成注册 |
 
+### 微信登录
+
+> POST /user/wxlogin
+
+- 请求参数
+
+|   字段   |  类型  |            备注            |
+| :------: | :----: | :------------------------: |
+| token | string |           小程序授权TOKEN           |
+
+- 返回参数
+
+| 字段  |  类型  |   备注    |
+| :---: | :----: | :-------: |
+| token | string | 授权TOKEN |
+| registed | bool | 是否完成注册 |
+
 ### 完成注册
 
 > POST /user/fin-register

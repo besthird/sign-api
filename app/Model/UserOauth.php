@@ -21,6 +21,12 @@ namespace App\Model;
  */
 class UserOauth extends Model
 {
+    const TYPE_WECHAT = 0;
+
+    const TYPE_MOBILE = 1;
+
+    const TYPE_EMAIL = 2;
+
     /**
      * The table associated with the model.
      *

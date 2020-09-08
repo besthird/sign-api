@@ -38,4 +38,11 @@ class UserDao extends Service
     {
         return User::query()->where('username', $username)->first();
     }
+
+    public function create(): User
+    {
+        $model = new User();
+        $model->save();
+        return $model;
+    }
 }

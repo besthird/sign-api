@@ -77,6 +77,21 @@ class UserController extends Controller
     }
 
     /**
+     * 微信登录.
+     */
+    public function wxlogin()
+    {
+        $token = $this->request->input('token');
+
+        $result = $this->service->wxlogin($token);
+
+        return $this->response->success([
+            'token' => $result->getToken(),
+            'registed' => $result->isRegisted(),
+        ]);
+    }
+
+    /**
      * 用户信息.
      */
     public function info()

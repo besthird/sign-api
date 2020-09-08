@@ -14,7 +14,9 @@ namespace App\Service;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\User;
+use App\Model\UserOauth;
 use App\Service\Dao\UserDao;
+use App\Service\Dao\UserOauthDao;
 use Hyperf\Di\Annotation\Inject;
 use HyperfX\Utils\Service;
 
@@ -25,6 +27,18 @@ class UserService extends Service
      * @var UserDao
      */
     protected $dao;
+
+    /**
+     * @Inject
+     * @var UserOauthDao
+     */
+    protected $oauth;
+
+    /**
+     * @Inject
+     * @var WeChat
+     */
+    protected $wechat;
 
     public function register(string $username, string $password)
     {
@@ -61,6 +75,30 @@ class UserService extends Service
 
         if (! $model->verify($password)) {
             throw new BusinessException(ErrorCode::USERNAME_OR_PASSWORD_ERROR);
+        }
+
+        return UserAuth::instance()->init($model);
+    }
+
+    public function wxlogin(string $token)
+    {
+        $app = $this->wechat->app();
+        $data = $app->auth->session($token);
+        if (empty($data['openid'])) {
+            throw new BusinessException(ErrorCode::WECHAT_TOKEN_INVALID);
+        }
+
+        $openid = $data['openid'];
+        $userOauth = $this->oauth->firstByOpenId($openid);
+        if ($userOauth) {
+            $model = $this->dao->first($userOauth->user_id);
+        } else {
+            $model = $this->dao->create();
+            $userOauth = new UserOauth();
+            $userOauth->user_id = $model->id;
+            $userOauth->type = UserOauth::TYPE_WECHAT;
+            $userOauth->oauth = $openid;
+            $userOauth->save();
         }
 
         return UserAuth::instance()->init($model);
