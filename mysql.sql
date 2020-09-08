@@ -189,7 +189,7 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
+  `username` varchar(32) DEFAULT NULL COMMENT '用户名',
   `password` varchar(128) NOT NULL DEFAULT '' COMMENT '密码',
   `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '手机号',
