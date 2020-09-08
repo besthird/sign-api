@@ -109,7 +109,7 @@ class UserController extends Controller
     /**
      * 更新用户信息.
      */
-    public function userSave(UserSaveRequest $request)
+    public function save(UserSaveRequest $request)
     {
         $userId = UserAuth::instance()->build()->getUserId();
 

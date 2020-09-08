@@ -29,8 +29,8 @@ class UserSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'head_img' => 'required',
             'nikename' => 'required',
+            'head_img' => 'required',
             'gender' => 'required',
             'wechat_code' => 'required',
             'profession' => 'required',
