@@ -24,7 +24,7 @@ class UserTest extends HttpTestCase
     public function testUserRegister()
     {
         $res = $this->json('/user/register', [
-            'username' => 'tester',
+            'username' => 'tester1',
             'password' => md5('123456'),
         ]);
 
@@ -59,5 +59,21 @@ class UserTest extends HttpTestCase
         ]);
 
         $this->assertSame(0, $res['code']);
+    }
+
+    public function testUserSave()
+    {
+        $res = $this->post('/user/save', [
+            'nikename' => 'tester',
+            'wechat_code' => 'wx54934',
+            'profession' => 'php',
+            'gender' => '1',
+            'head_img' => 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=106057627,1188041136&fm=26&gp=0.jpg',
+            'mobile' => '15988669988',
+        ], [
+            UserAuth::X_TOKEN => $this->getToken(),
+        ]);
+
+        $this->assertTrue(in_array($res['code'], [0, ErrorCode::MOBILE_EXIST_ERROR]));
     }
 }

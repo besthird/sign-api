@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Request\UserLoginRequest;
+use App\Request\UserSaveRequest;
 use App\Service\Formatter\UserFormatter;
 use App\Service\UserAuth;
 use App\Service\UserService;
@@ -103,5 +104,26 @@ class UserController extends Controller
         return $this->response->success(
             $this->formatter->base($model)
         );
+    }
+
+
+    /**
+     * 更新用户信息
+     * @param UserSaveRequest $request
+     */
+    public function userSave(UserSaveRequest $request)
+    {
+        $userId = UserAuth::instance()->build()->getUserId();
+
+        $data['nikename'] = $request->input('nikename');
+        $data['mobile'] = $request->input('mobile');
+        $data['wechat_code'] = $request->input('wechat_code');
+        $data['profession'] = $request->input('profession');
+        $data['gender'] = $request->input('gender');
+        $data['head_img'] = $request->input('head_img');
+
+        $bool = $this->service->save($userId,$data);
+
+        return $this->response->success($bool);
     }
 }

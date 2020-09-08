@@ -108,4 +108,31 @@ class UserService extends Service
     {
         return $this->dao->first($userId, true);
     }
+
+    /**
+     * 更新用户数据
+     * @param int $userId
+     * @param array $data
+     * @return bool
+     */
+    public function save(int $userId,array $data)
+    {
+        $model = $this->dao->first($userId,true);
+
+        if ($model->mobile != $data['mobile']) {
+            $mobile = $this->dao->firstByUserMobile($userId,$data['mobile'],true);
+            if ($mobile) {
+                throw new BusinessException(ErrorCode::MOBILE_EXIST_ERROR);
+            }
+        }
+
+        $model->mobile = $data['mobile'];
+        $model->nikename = $data['nikename'];
+        $model->head_img = $data['head_img'];
+        $model->wechat_code = $data['wechat_code'];
+        $model->gender = $data['gender'];
+        $model->profession = $data['profession'];
+
+        return $model->save();
+    }
 }

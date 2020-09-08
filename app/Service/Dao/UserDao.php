@@ -39,10 +39,30 @@ class UserDao extends Service
         return User::query()->where('username', $username)->first();
     }
 
+    /**
+     * 手机号查询
+     * @param int $userId
+     * @param string $mobile
+     * @param false $throw true 不包含$userId  false 所有用户
+     * @return User|null
+     */
+    public function firstByUserMobile(int $userId,string $mobile,$throw = false)
+    {
+        $user = User::query()->where('mobile',$mobile);
+
+       if ($throw) {
+            $user->where('id','!=',$userId);
+        }
+
+        return $user->first();
+
+    }
+
     public function create(): User
     {
         $model = new User();
         $model->save();
         return $model;
     }
+
 }

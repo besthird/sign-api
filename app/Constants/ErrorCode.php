@@ -53,4 +53,9 @@ class ErrorCode extends AbstractConstants
      * @Message("用户名或密码错误")
      */
     const USERNAME_OR_PASSWORD_ERROR = 1006;
+
+    /**
+     * @Message("手机号已存在")
+     */
+    const MOBILE_EXIST_ERROR = 1010;
 }
