@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-09-07 10:01:08 +0000
+# Generation Time: 2020-09-08 03:38:08 +0000
 # ************************************************************
 
 
@@ -208,7 +208,8 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `username`, `password`, `nikename`, `mobile`, `wechat_code`, `profession`, `gender`, `head_img`, `created_at`, `updated_at`)
 VALUES
-	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','','','','',0,'','2020-08-25 14:53:16','2020-08-25 14:53:16');
+	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','','','','',0,'','2020-08-25 14:53:16','2020-08-25 14:53:16'),
+	(3,NULL,'','','','','',0,'','2020-09-08 11:27:36','2020-09-08 11:27:36');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -231,6 +232,15 @@ CREATE TABLE `user_oauth` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户授权表';
 
+LOCK TABLES `user_oauth` WRITE;
+/*!40000 ALTER TABLE `user_oauth` DISABLE KEYS */;
+
+INSERT INTO `user_oauth` (`id`, `user_id`, `type`, `oauth`, `created_at`, `updated_at`)
+VALUES
+	(1,3,0,'os9Ut5K4mofyL3HDCIq_pu-sRFRc','2020-09-08 11:27:36','2020-09-08 11:27:36');
+
+/*!40000 ALTER TABLE `user_oauth` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
