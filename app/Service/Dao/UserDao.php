@@ -40,22 +40,19 @@ class UserDao extends Service
     }
 
     /**
-     * 手机号查询
-     * @param int $userId
-     * @param string $mobile
+     * 手机号查询.
      * @param false $throw true 不包含$userId  false 所有用户
-     * @return User|null
+     * @return null|User
      */
-    public function firstByUserMobile(int $userId,string $mobile,$throw = false)
+    public function firstByUserMobile(int $userId, string $mobile, $throw = false)
     {
-        $user = User::query()->where('mobile',$mobile);
+        $user = User::query()->where('mobile', $mobile);
 
-       if ($throw) {
-            $user->where('id','!=',$userId);
+        if ($throw) {
+            $user->where('id', '!=', $userId);
         }
 
         return $user->first();
-
     }
 
     public function create(): User
@@ -64,5 +61,4 @@ class UserDao extends Service
         $model->save();
         return $model;
     }
-
 }

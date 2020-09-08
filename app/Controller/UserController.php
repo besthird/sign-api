@@ -106,10 +106,8 @@ class UserController extends Controller
         );
     }
 
-
     /**
-     * 更新用户信息
-     * @param UserSaveRequest $request
+     * 更新用户信息.
      */
     public function userSave(UserSaveRequest $request)
     {
@@ -122,7 +120,7 @@ class UserController extends Controller
         $data['gender'] = $request->input('gender');
         $data['head_img'] = $request->input('head_img');
 
-        $bool = $this->service->save($userId,$data);
+        $bool = $this->service->save($userId, $data);
 
         return $this->response->success($bool);
     }

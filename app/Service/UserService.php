@@ -110,17 +110,15 @@ class UserService extends Service
     }
 
     /**
-     * 更新用户数据
-     * @param int $userId
-     * @param array $data
+     * 更新用户数据.
      * @return bool
      */
-    public function save(int $userId,array $data)
+    public function save(int $userId, array $data)
     {
-        $model = $this->dao->first($userId,true);
+        $model = $this->dao->first($userId, true);
 
         if ($model->mobile != $data['mobile']) {
-            $mobile = $this->dao->firstByUserMobile($userId,$data['mobile'],true);
+            $mobile = $this->dao->firstByUserMobile($userId, $data['mobile'], true);
             if ($mobile) {
                 throw new BusinessException(ErrorCode::MOBILE_EXIST_ERROR);
             }
