@@ -17,4 +17,4 @@ Router::post('/user/login', App\Controller\UserController::class . '::login');
 Router::post('/user/wxlogin', App\Controller\UserController::class . '::wxlogin');
 Router::get('/user/info', App\Controller\UserController::class . '::info');
 Router::post('/user/finish-register', App\Controller\UserController::class . '::finishRegister');
-Router::post('/user/save', App\Controller\UserController::class . '::userSave');
+Router::post('/user/save', App\Controller\UserController::class . '::save');
