@@ -29,12 +29,10 @@ class UserSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nikename' => 'required',
-            'head_img' => 'required',
-            'gender' => 'required',
-            'wechat_code' => 'required',
-            'profession' => 'required',
-            'mobile' => 'required',
+            'nickname' => 'required',
+            'gender' => 'in:0,1,2',
+            'profession' => 'max:16',
+            'mobile' => 'between:5,20',
         ];
     }
 }

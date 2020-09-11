@@ -113,14 +113,7 @@ class UserController extends Controller
     {
         $userId = UserAuth::instance()->build()->getUserId();
 
-        $data['nikename'] = $request->input('nikename');
-        $data['mobile'] = $request->input('mobile');
-        $data['wechat_code'] = $request->input('wechat_code');
-        $data['profession'] = $request->input('profession');
-        $data['gender'] = $request->input('gender');
-        $data['head_img'] = $request->input('head_img');
-
-        $bool = $this->service->save($userId, $data);
+        $bool = $this->service->save($userId, $request->all());
 
         return $this->response->success($bool);
     }

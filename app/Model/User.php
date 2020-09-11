@@ -15,7 +15,7 @@ namespace App\Model;
  * @property int $id
  * @property string $username 用户名
  * @property string $password 密码
- * @property string $nikename 姓名
+ * @property string $nickname 姓名
  * @property string $mobile 手机号
  * @property string $wechat_code 微信号
  * @property string $profession 职业
@@ -38,7 +38,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'username', 'password', 'nikename', 'mobile', 'wechat_code', 'profession', 'gender', 'head_img', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'username', 'password', 'nickname', 'mobile', 'wechat_code', 'profession', 'gender', 'head_img', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
