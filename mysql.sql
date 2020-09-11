@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-09-08 03:38:08 +0000
+# Generation Time: 2020-09-11 07:26:59 +0000
 # ************************************************************
 
 
@@ -191,7 +191,7 @@ CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) DEFAULT NULL COMMENT '用户名',
   `password` varchar(128) NOT NULL DEFAULT '' COMMENT '密码',
-  `nikename` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
+  `nickname` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '手机号',
   `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
   `profession` varchar(64) NOT NULL DEFAULT '' COMMENT '职业',
@@ -206,9 +206,9 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`id`, `username`, `password`, `nikename`, `mobile`, `wechat_code`, `profession`, `gender`, `head_img`, `created_at`, `updated_at`)
+INSERT INTO `user` (`id`, `username`, `password`, `nickname`, `mobile`, `wechat_code`, `profession`, `gender`, `head_img`, `created_at`, `updated_at`)
 VALUES
-	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','','','','',0,'','2020-08-25 14:53:16','2020-08-25 14:53:16'),
+	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','tester','','wx54934','php',1,'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=106057627,1188041136&fm=26&gp=0.jpg','2020-08-25 14:53:16','2020-09-11 14:53:19'),
 	(3,NULL,'','','','','',0,'','2020-09-08 11:27:36','2020-09-08 11:27:36');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
