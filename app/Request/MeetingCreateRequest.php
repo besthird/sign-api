@@ -25,12 +25,10 @@ class MeetingCreateRequest extends FormRequest
             'title' => 'required',
             'content' => 'required',
             'sign_type' => 'in:1,2,3',
-            'user_limit' => 'required',
+            'user_limit' => 'numeric',
             'status' => 'in:0,1',
-            'sign_in_btime' => 'required',
-            'sign_in_etime' => 'required',
-            'sign_out_btime' => 'required',
-            'sign_out_etime' => 'required',
         ];
     }
+
+
 }

@@ -3,9 +3,6 @@
 
 namespace App\Service;
 
-
-use App\Constants\ErrorCode;
-use App\Exception\BusinessException;
 use App\Model\Meeting;
 use App\Service\Dao\MeetingDao;
 use App\Service\Formatter\MeetingFormatter;
@@ -35,10 +32,10 @@ class MeetingService extends Service
         $model->sign_type = $data['sign_type'];
         $model->user_limit = $data['user_limit'];
         $model->status = $data['status'];
-        $model->sign_in_btime = $data['sign_in_btime'];
-        $model->sign_in_etime = $data['sign_in_etime'];
-        $model->sign_out_btime = $data['sign_out_btime'];
-        $model->sign_out_etime = $data['sign_out_etime'];
+        $model->sign_in_btime = $data['sign_in_btime'] ?? 0;
+        $model->sign_in_etime = $data['sign_in_etime'] ?? 0;
+        $model->sign_out_btime = $data['sign_out_btime'] ?? 0;
+        $model->sign_out_etime = $data['sign_out_etime'] ?? 0;
 
         return $model->save();
     }
