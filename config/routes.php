@@ -18,3 +18,8 @@ Router::post('/user/wxlogin', App\Controller\UserController::class . '::wxlogin'
 Router::get('/user/info', App\Controller\UserController::class . '::info');
 Router::post('/user/finish-register', App\Controller\UserController::class . '::finishRegister');
 Router::post('/user/save', App\Controller\UserController::class . '::save');
+
+Router::post('/meeting/create', App\Controller\MeetingController::class . '::create');
+Router::get('/meeting/info', App\Controller\MeetingController::class . '::info');
+Router::get('/meeting/get-user-meeting', App\Controller\MeetingController::class . '::getUserMeeting');
+Router::post('/meeting/del', App\Controller\MeetingController::class . '::del');
