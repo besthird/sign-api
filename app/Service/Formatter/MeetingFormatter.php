@@ -5,6 +5,7 @@ namespace App\Service\Formatter;
 
 
 use App\Model\Meeting;
+use App\Model\User;
 
 class MeetingFormatter extends Formatter
 {
@@ -24,5 +25,14 @@ class MeetingFormatter extends Formatter
             'created_at' => (string)$model->created_at,
             'updated_at' => (string)$model->updated_at,
         ];
+    }
+
+    public function detail(Meeting $model,User $user)
+    {
+        $data = $this->base($model);
+
+        $data['user'] = di()->get(UserFormatter::class)->base($user);
+
+        return $data;
     }
 }

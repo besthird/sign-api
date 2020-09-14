@@ -51,7 +51,7 @@ class MeetingService extends Service
 
         $item = [];
         foreach ($model as $k=>$v) {
-            $item[$k] = $this->formatter->base($v);
+            $item[$k] = $this->formatter->detail($v,$v->user);
         }
 
         return $item;
