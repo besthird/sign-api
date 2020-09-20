@@ -1,7 +1,14 @@
 <?php
 
 declare(strict_types=1);
-
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
 namespace App\Controller;
 
 use App\Model\Meeting;
@@ -15,26 +22,25 @@ use Hyperf\Di\Annotation\Inject;
 class MeetingController extends Controller
 {
     /**
-     * @Inject()
+     * @Inject
      * @var MeetingService
      */
     protected $service;
 
     /**
-     * @Inject()
+     * @Inject
      * @var MeetingDao
      */
     protected $dao;
 
     /**
-     * @Inject()
+     * @Inject
      * @var MeetingFormatter
      */
     protected $formatter;
 
     /**
-     * 创建会议
-     * @param MeetingCreateRequest $request
+     * 创建会议.
      */
     public function create(MeetingCreateRequest $request)
     {
@@ -42,12 +48,13 @@ class MeetingController extends Controller
 
         $data = $request->all();
 
-        $bool = $this->service->create($userId,$data);
+        $bool = $this->service->create($userId, $data);
 
         return $this->response->success($bool);
     }
+
     /**
-     * 用户会议数据
+     * 用户会议数据.
      */
     public function getUserMeeting()
     {
@@ -57,8 +64,9 @@ class MeetingController extends Controller
 
         return $this->response->success($items);
     }
+
     /**
-     * 会议详情
+     * 会议详情.
      */
     public function info()
     {
@@ -73,14 +81,14 @@ class MeetingController extends Controller
     }
 
     /**
-     * 删除会议
+     * 删除会议.
      */
     public function del()
     {
         $id = $this->request->input('id');
 
         /** @var Meeting $model */
-        $model = $this->dao->first((int)$id,true);
+        $model = $this->dao->first((int) $id, true);
 
         $bool = $model->delete();
 

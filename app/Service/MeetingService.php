@@ -1,6 +1,14 @@
 <?php
 
-
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
 namespace App\Service;
 
 use App\Model\Meeting;
@@ -12,18 +20,18 @@ use HyperfX\Utils\Service;
 class MeetingService extends Service
 {
     /**
-     * @Inject()
+     * @Inject
      * @var MeetingDao
      */
     protected $dao;
 
     /**
-     * @Inject()
+     * @Inject
      * @var MeetingFormatter
      */
     protected $formatter;
 
-    public function create($userId,array $data)
+    public function create($userId, array $data)
     {
         $model = new Meeting();
         $model->user_id = $userId;
@@ -42,7 +50,7 @@ class MeetingService extends Service
 
     public function info($id)
     {
-        return $this->dao->first($id,true);
+        return $this->dao->first($id, true);
     }
 
     public function getUserMeeting(int $userId)
@@ -50,8 +58,8 @@ class MeetingService extends Service
         $model = $this->dao->getUserMeeting($userId);
 
         $item = [];
-        foreach ($model as $k=>$v) {
-            $item[$k] = $this->formatter->detail($v,$v->user);
+        foreach ($model as $k => $v) {
+            $item[$k] = $this->formatter->detail($v, $v->user);
         }
 
         return $item;
