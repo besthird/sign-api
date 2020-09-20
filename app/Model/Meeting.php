@@ -48,4 +48,9 @@ class Meeting extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'sign_type' => 'integer', 'user_limit' => 'integer', 'status' => 'integer', 'sign_in_btime' => 'integer', 'sign_in_etime' => 'integer', 'sign_out_btime' => 'integer', 'sign_out_etime' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

@@ -58,4 +58,9 @@ class ErrorCode extends AbstractConstants
      * @Message("手机号已存在")
      */
     const MOBILE_EXIST_ERROR = 1010;
+
+    /**
+     * @Message("会议不存在")
+     */
+    const MEETING_NOT_EXIST_ERROR = 1014;
 }
