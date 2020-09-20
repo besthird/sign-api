@@ -30,6 +30,11 @@ class ErrorCode extends AbstractConstants
     const TOKEN_INVALID = 700;
 
     /**
+     * @Message("越权操作")
+     */
+    const AUTH_INVALID = 701;
+
+    /**
      * @Message("参数错误")
      */
     const PARAMS_INVALID = 1000;
@@ -57,10 +62,10 @@ class ErrorCode extends AbstractConstants
     /**
      * @Message("手机号已存在")
      */
-    const MOBILE_EXIST_ERROR = 1010;
+    const MOBILE_EXIST_ERROR = 1007;
 
     /**
      * @Message("会议不存在")
      */
-    const MEETING_NOT_EXIST_ERROR = 1014;
+    const MEETING_NOT_EXIST_ERROR = 1100;
 }

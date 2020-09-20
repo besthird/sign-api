@@ -21,9 +21,9 @@ use HyperfTest\HttpTestCase;
  */
 class MeetingTest extends HttpTestCase
 {
-    public function testMeetingCreate()
+    public function testMeetingUpdate()
     {
-        $res = $this->post('/meeting/create', [
+        $res = $this->json('/meeting/1', [
             'title' => '标题',
             'content' => '会议内容',
             'sign_type' => 1,

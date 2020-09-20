@@ -42,13 +42,13 @@ class MeetingController extends Controller
     /**
      * 创建会议.
      */
-    public function create(MeetingCreateRequest $request)
+    public function update(int $id, MeetingCreateRequest $request)
     {
         $userId = UserAuth::instance()->build()->getUserId();
 
         $data = $request->all();
 
-        $bool = $this->service->create($userId, $data);
+        $bool = $this->service->update($id, $userId, $data);
 
         return $this->response->success($bool);
     }
@@ -70,7 +70,7 @@ class MeetingController extends Controller
      */
     public function info()
     {
-        $id = $this->request->input('meeting_id');
+        $id = (int) $this->request->input('meeting_id');
 
         /** @var Meeting $model */
         $model = $this->service->info($id);

@@ -18,7 +18,7 @@ use HyperfX\Utils\Service;
 
 class MeetingDao extends Service
 {
-    public function first(int $id, $throw = false)
+    public function first(int $id, $throw = false): ?Meeting
     {
         $model = Meeting::query()->where('id', $id)->first();
 

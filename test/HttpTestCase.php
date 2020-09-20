@@ -26,14 +26,14 @@ use PHPUnit\Framework\TestCase;
 abstract class HttpTestCase extends TestCase
 {
     /**
+     * @var string
+     */
+    public static $token;
+
+    /**
      * @var Testing\HttpClient
      */
     protected $client;
-
-    /**
-     * @var string
-     */
-    protected $token;
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
@@ -48,8 +48,8 @@ abstract class HttpTestCase extends TestCase
 
     public function getToken()
     {
-        if ($this->token) {
-            return $this->token;
+        if (self::$token) {
+            return self::$token;
         }
 
         $userAuth = UserAuth::instance()->init(
@@ -57,6 +57,6 @@ abstract class HttpTestCase extends TestCase
             'phpunit'
         );
 
-        return $this->token = $userAuth->getToken();
+        return self::$token = $userAuth->getToken();
     }
 }

@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Model\Meeting;
 use App\Service\Dao\MeetingDao;
 use App\Service\Formatter\MeetingFormatter;
@@ -31,10 +33,18 @@ class MeetingService extends Service
      */
     protected $formatter;
 
-    public function create($userId, array $data)
+    public function update(int $meetingId, int $userId, array $data)
     {
-        $model = new Meeting();
-        $model->user_id = $userId;
+        if ($meetingId > 0) {
+            $model = $this->dao->first($meetingId, true);
+            if ($model->user_id !== $userId) {
+                throw new BusinessException(ErrorCode::AUTH_INVALID);
+            }
+        } else {
+            $model = new Meeting();
+            $model->user_id = $userId;
+        }
+
         $model->title = $data['title'];
         $model->content = $data['content'];
         $model->sign_type = $data['sign_type'];
