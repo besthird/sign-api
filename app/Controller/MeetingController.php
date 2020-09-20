@@ -68,10 +68,8 @@ class MeetingController extends Controller
     /**
      * 会议详情.
      */
-    public function info()
+    public function info(int $id)
     {
-        $id = (int) $this->request->input('meeting_id');
-
         /** @var Meeting $model */
         $model = $this->service->info($id);
 

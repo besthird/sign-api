@@ -42,9 +42,7 @@ class MeetingTest extends HttpTestCase
 
     public function testMeetingInfo()
     {
-        $res = $this->get('/meeting/info', [
-            'meeting_id' => 1,
-        ], [
+        $res = $this->get('/meeting/1', [], [
             UserAuth::X_TOKEN => $this->getToken(),
         ]);
 
