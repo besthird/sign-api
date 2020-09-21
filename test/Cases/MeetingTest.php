@@ -51,7 +51,10 @@ class MeetingTest extends HttpTestCase
 
     public function testMeetingGetUserMeeting()
     {
-        $res = $this->get('/meeting/get-user-meeting', [], [
+        $res = $this->get('/meeting/get-user-meeting', [
+            'offset' => 0,
+            'limit' => 10,
+        ], [
             UserAuth::X_TOKEN => $this->getToken(),
         ]);
 

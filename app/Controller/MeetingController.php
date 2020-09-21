@@ -59,10 +59,12 @@ class MeetingController extends Controller
     public function getUserMeeting()
     {
         $userId = UserAuth::instance()->build()->getUserId();
+        $offset = intval($this->request->input('offset'));
+        $limit = intval($this->request->input('limit'));
 
-        $items = $this->service->getUserMeeting($userId);
+        [$count,$items] = $this->service->getUserMeeting($userId,$offset,$limit);
 
-        return $this->response->success($items);
+        return $this->response->success(['count'=>$count,'items'=>$items]);
     }
 
     /**

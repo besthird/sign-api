@@ -13,6 +13,7 @@ namespace App\Service\Dao;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Kernel\Helper\ModelHelper;
 use App\Model\Meeting;
 use HyperfX\Utils\Service;
 
@@ -31,10 +32,15 @@ class MeetingDao extends Service
 
     /**
      * @param $userId
+     * @param $offset
+     * @param $limit
      * @return null|Meeting
      */
-    public function getUserMeeting($userId)
+    public function getUserMeeting($userId,$offset = 0,$limit = 10)
     {
-        return Meeting::query()->where('user_id', '=', $userId)->get();
+        $query = Meeting::query()->where('user_id', '=', $userId);
+
+        return ModelHelper::pagination($query,$offset,$limit);
+
     }
 }
