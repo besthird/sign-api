@@ -36,11 +36,10 @@ class MeetingDao extends Service
      * @param $limit
      * @return null|Meeting
      */
-    public function getUserMeeting($userId,$offset = 0,$limit = 10)
+    public function getUserMeeting($userId, $offset = 0, $limit = 10)
     {
         $query = Meeting::query()->where('user_id', '=', $userId);
 
-        return ModelHelper::pagination($query,$offset,$limit);
-
+        return ModelHelper::pagination($query, $offset, $limit);
     }
 }
