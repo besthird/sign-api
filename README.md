@@ -96,3 +96,72 @@
 | profession  | string |     职业      |
 |   gender    |  int   | 0未知 1男 2女 |
 |  head_img   | string |     头像      |
+
+
+### 创建|修改会议
+- id>0 修改 
+
+> POST /meeting/id
+
+- 请求参数
+
+|   字段   |  类型  |  备注  |
+| :------: | :----: | :----: |
+| title | string | 会议标题 |
+| content | string | 会议内容 |
+| sign_type | int | 1签到2签退3签到签退 |
+| user_limit | int | 参会人数 |
+| status | int | 是否发布0否1发布 |
+| sign_in_btime | int | 签到开始时间 |
+| sign_in_etime | int | 签到结束时间 |
+| sign_out_btime | int | 签退开始时间 |
+| sign_out_etime | int | 签退结束时间 |
+
+### 会议详情
+
+> GET /meeting/id
+
+- 返回参数
+
+|    字段     |  类型  |     备注      |
+| :---------: | :----: | :-----------: |
+|     id      |  int   |    会议ID      |
+|   title     | string | 会议标题 |
+|   content   |   string | 会议内容 |
+|   sign_type | int | 1签到2签退3签到签退 |
+|   user_limit | int | 参会人数 |
+|   status      | int | 是否发布0否1发布 |
+|   sign_in_btime | int | 签到开始时间 |
+|   sign_in_etime | int | 签到结束时间 |
+|   sign_out_btime | int | 签退开始时间 |
+|   sign_out_etime | int | 签退结束时间 |
+
+### 用户会议列表
+
+> GET /meeting/get-user-meeting
+
+- 返回参数
+
+|    字段     |  类型  |     备注      |
+| :---------: | :----: | :-----------: |
+|     id      |  int   |    会议ID     |
+|   title     | string | 会议标题 |
+|   content   |   string | 会议内容 |
+|   sign_type | int | 1签到2签退3签到签退 |
+|   user_limit | int | 参会人数 |
+|   status      | int | 是否发布0否1发布 |
+|   sign_in_btime | int | 签到开始时间 |
+|   sign_in_etime | int | 签到结束时间 |
+|   sign_out_btime | int | 签退开始时间 |
+|   sign_out_etime | int | 签退结束时间 |
+|   user |   array    |  用户信息     |
+
+### 删除会议
+
+> POST /meeting/del
+
+- 请求参数
+
+|   字段   |  类型  |  备注  |
+| :------: | :----: | :----: |
+| id | int | 会议id |
