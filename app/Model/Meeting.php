@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace App\Model;
 
+use Carbon\Carbon;
+
 /**
  * @property int $id
  * @property int $user_id 用户ID
@@ -53,5 +55,26 @@ class Meeting extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function isOnline(int $type, ?Carbon $now = null): bool
+    {
+        if (is_null($now)) {
+            $now = Carbon::now();
+        }
+
+        if ($type == Sign::TYPE_IN) {
+            if ($this->sign_in_btime <= $now->getTimestamp() && $this->sign_in_etime >= $now->getTimestamp()) {
+                return true;
+            }
+
+            return false;
+        }
+
+        if ($this->sign_out_btime <= $now->getTimestamp() && $this->sign_out_etime >= $now->getTimestamp()) {
+            return true;
+        }
+
+        return false;
     }
 }

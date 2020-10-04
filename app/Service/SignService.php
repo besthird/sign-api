@@ -16,7 +16,9 @@ use App\Exception\BusinessException;
 use App\Model\Sign;
 use App\Service\Dao\MeetingDao;
 use App\Service\Dao\SignDao;
+use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
+use Hyperf\Utils\Codec\Json;
 use HyperfX\Utils\Service;
 
 class SignService extends Service
@@ -33,20 +35,39 @@ class SignService extends Service
      */
     protected $dao;
 
-    public function sign(int $id, int $userId, int $type)
+    /**
+     * @param $input = [
+     *     'type' => 1, // 1签到 2签退
+     *     'nickname' => '', // 昵称
+     *     'mobile' => '', // 手机号
+     *     'wechat_code' => '', // 微信号
+     *     'data' => [], // 其他字段
+     * ]
+     */
+    public function sign(int $id, int $userId, array $input)
     {
+        $type = $input['type'];
         $meeting = $this->meeting->first($id, true);
+        $now = Carbon::now();
+        if (! $meeting->isOnline($type, $now)) {
+            throw new BusinessException(ErrorCode::SIGN_TIME_INVALID);
+        }
+
         $sign = $this->dao->first($id, $userId);
-        if ($sign) {
-            if ($type === Sign::TYPE_IN) {
-                // 不允许重复签到
-                throw new BusinessException(ErrorCode::SIGN_AGAIN);
-            }
-        } else {
+        if (empty($sign)) {
             $sign = new Sign();
             $sign->meeting_id = $id;
             $sign->user_id = $userId;
             $sign->type = $type;
+            $sign->last_sign_at = $now;
+        } elseif ($type === Sign::TYPE_OUT) {
+            $sign->last_sign_at = $now;
         }
+
+        $sign->nickname = $input['nickname'];
+        $sign->mobile = $input['mobile'] ?? '';
+        $sign->wechat_code = $input['wechat_code'] ?? '';
+        $sign->data = Json::encode((object) ($input['data'] ?? []));
+        return $sign->save();
     }
 }

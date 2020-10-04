@@ -73,4 +73,9 @@ class ErrorCode extends AbstractConstants
      * @Message("签到重复")
      */
     const SIGN_AGAIN = 1200;
+
+    /**
+     * @Message("不在签到时间内")
+     */
+    const SIGN_TIME_INVALID = 1201;
 }

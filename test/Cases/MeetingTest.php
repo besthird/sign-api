@@ -29,9 +29,9 @@ class MeetingTest extends HttpTestCase
             'sign_type' => 1,
             'user_limit' => 100,
             'status' => 1,
-            'sign_in_btime' => time(), //签到时间
+            'sign_in_btime' => time(), // 签到时间
             'sign_in_etime' => time() + 7200,
-            'sign_out_btime' => time(), //签退时间
+            'sign_out_btime' => time(), // 签退时间
             'sign_out_etime' => time() + 7200,
         ], [
             UserAuth::X_TOKEN => $this->getToken(),

@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Request\SignRequest;
 use App\Service\SignService;
 use Hyperf\Di\Annotation\Inject;
 use function App\Kernel\get_user_id;
@@ -23,9 +24,11 @@ class SignController extends Controller
      */
     protected $service;
 
-    public function sign(int $id)
+    public function sign(int $id, SignRequest $request)
     {
-        $result = $this->service->sign($id, get_user_id());
+        $input = $request->all();
+
+        $result = $this->service->sign($id, get_user_id(), $input);
 
         return $this->response->success($result);
     }
