@@ -60,7 +60,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Kernel/Functions.php"
+            "app/Kernel/Functions.php",
+            "app/Kernel/helper.php"
         ]
     },
     "autoload-dev": {
