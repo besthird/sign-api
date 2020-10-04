@@ -56,7 +56,7 @@ class MeetingController extends Controller
     /**
      * 用户会议数据.
      */
-    public function getUserMeeting()
+    public function index()
     {
         $userId = get_user_id();
         $offset = intval($this->request->input('offset'));
