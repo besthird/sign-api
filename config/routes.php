@@ -21,5 +21,5 @@ Router::post('/user/save', App\Controller\UserController::class . '::save');
 
 Router::post('/meeting/{id:\d+}', App\Controller\MeetingController::class . '::update');
 Router::get('/meeting/{id:\d+}', App\Controller\MeetingController::class . '::info');
-Router::get('/meeting/get-user-meeting', App\Controller\MeetingController::class . '::getUserMeeting');
+Router::get('/meeting', App\Controller\MeetingController::class . '::getUserMeeting');
 Router::post('/meeting/del', App\Controller\MeetingController::class . '::del');

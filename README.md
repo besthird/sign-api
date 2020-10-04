@@ -99,9 +99,9 @@
 
 
 ### 创建|修改会议
-- id>0 修改 
 
-> POST /meeting/id
+> POST /meeting/{id:\d+}
+
 
 - 请求参数
 
@@ -119,7 +119,7 @@
 
 ### 会议详情
 
-> GET /meeting/id
+> GET /meeting/{id:\d+}
 
 - 返回参数
 
@@ -138,7 +138,7 @@
 
 ### 用户会议列表
 
-> GET /meeting/get-user-meeting
+> GET /meeting
 
 - 返回参数
 
