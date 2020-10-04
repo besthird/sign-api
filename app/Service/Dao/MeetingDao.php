@@ -34,9 +34,9 @@ class MeetingDao extends Service
      * @param $userId
      * @param $offset
      * @param $limit
-     * @return null|Meeting
+     * @return array
      */
-    public function getUserMeeting($userId, $offset = 0, $limit = 10)
+    public function getUserMeeting(int $userId, int $offset = 0, int $limit = 10)
     {
         $query = Meeting::query()->where('user_id', '=', $userId);
 

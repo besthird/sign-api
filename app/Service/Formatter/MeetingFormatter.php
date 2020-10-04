@@ -35,6 +35,15 @@ class MeetingFormatter extends Formatter
         ];
     }
 
+    public function formatList($models)
+    {
+        $result = [];
+        foreach ($models as $model) {
+            $result[] = $this->base($model);
+        }
+        return $result;
+    }
+
     public function detail(Meeting $model, User $user)
     {
         $data = $this->base($model);

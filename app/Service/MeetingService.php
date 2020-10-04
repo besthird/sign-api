@@ -65,13 +65,10 @@ class MeetingService extends Service
 
     public function getUserMeeting(int $userId, int $offset, int $limit)
     {
-        [$count,$items] = $this->dao->getUserMeeting($userId, $offset, $limit);
+        [$count, $items] = $this->dao->getUserMeeting($userId, $offset, $limit);
 
-        $item = [];
-        foreach ($items as $k => $v) {
-            $item[$k] = $this->formatter->detail($v, $v->user);
-        }
+        $result = $this->formatter->formatList($items);
 
-        return [$count, $item];
+        return [$count, $result];
     }
 }
