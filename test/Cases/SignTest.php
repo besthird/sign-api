@@ -32,4 +32,13 @@ class SignTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testSignIndex()
+    {
+        $res = $this->get('/sign', [], [
+            UserAuth::X_TOKEN => $this->getToken(),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }

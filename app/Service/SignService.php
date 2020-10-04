@@ -16,6 +16,7 @@ use App\Exception\BusinessException;
 use App\Model\Sign;
 use App\Service\Dao\MeetingDao;
 use App\Service\Dao\SignDao;
+use App\Service\Formatter\SignFormatter;
 use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Codec\Json;
@@ -35,9 +36,19 @@ class SignService extends Service
      */
     protected $dao;
 
+    /**
+     * @Inject
+     * @var SignFormatter
+     */
+    protected $formatter;
+
     public function index(int $userId, int $offset, int $limit)
     {
-        $this->dao->find($userId, $offset, $limit);
+        [$count, $models] = $this->dao->find($userId, $offset, $limit);
+
+        $result = $this->formatter->formatList($models);
+
+        return [$count, $result];
     }
 
     /**

@@ -26,8 +26,10 @@ class SignDao extends Service
 
     public function find(int $userId, int $offset, int $limit)
     {
-        $query = Sign::query()->where('user_id', $userId);
+        $query = Sign::query()->with('meeting')->where('user_id', $userId);
 
-        return $this->factory->model->pagination();
+        $query->orderBy('id', 'desc');
+
+        return $this->factory->model->pagination($query, $offset, $limit);
     }
 }

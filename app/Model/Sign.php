@@ -11,6 +11,8 @@ declare(strict_types=1);
  */
 namespace App\Model;
 
+use Hyperf\Utils\Codec\Json;
+
 /**
  * @property int $id
  * @property int $meeting_id 会议id
@@ -23,6 +25,8 @@ namespace App\Model;
  * @property \Carbon\Carbon $last_sign_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property array $data_array
+ * @property \App\Model\Meeting $meeting
  */
 class Sign extends Model
 {
@@ -52,4 +56,14 @@ class Sign extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'meeting_id' => 'integer', 'user_id' => 'integer', 'type' => 'integer', 'last_sign_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public function getDataArrayAttribute(): array
+    {
+        return Json::decode($this->data);
+    }
+
+    public function meeting()
+    {
+        return $this->belongsTo(Meeting::class, 'meeting_id', 'id');
+    }
 }

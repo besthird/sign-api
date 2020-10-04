@@ -62,19 +62,15 @@ class Meeting extends Model
         if (is_null($now)) {
             $now = Carbon::now();
         }
-
         if ($type == Sign::TYPE_IN) {
             if ($this->sign_in_btime <= $now->getTimestamp() && $this->sign_in_etime >= $now->getTimestamp()) {
                 return true;
             }
-
             return false;
         }
-
         if ($this->sign_out_btime <= $now->getTimestamp() && $this->sign_out_etime >= $now->getTimestamp()) {
             return true;
         }
-
         return false;
     }
 }

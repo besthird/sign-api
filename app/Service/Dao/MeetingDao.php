@@ -33,6 +33,8 @@ class MeetingDao extends Service
     {
         $query = Meeting::query()->where('user_id', $userId);
 
+        $query->orderBy('id', 'desc');
+
         return $this->factory->model->pagination($query, $offset, $limit);
     }
 }
