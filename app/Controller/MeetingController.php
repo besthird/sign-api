@@ -16,8 +16,8 @@ use App\Request\MeetingCreateRequest;
 use App\Service\Dao\MeetingDao;
 use App\Service\Formatter\MeetingFormatter;
 use App\Service\MeetingService;
-use App\Service\UserAuth;
 use Hyperf\Di\Annotation\Inject;
+use function App\Kernel\get_user_id;
 
 class MeetingController extends Controller
 {
@@ -44,7 +44,7 @@ class MeetingController extends Controller
      */
     public function update(int $id, MeetingCreateRequest $request)
     {
-        $userId = UserAuth::instance()->build()->getUserId();
+        $userId = get_user_id();
 
         $data = $request->all();
 
@@ -58,7 +58,7 @@ class MeetingController extends Controller
      */
     public function getUserMeeting()
     {
-        $userId = UserAuth::instance()->build()->getUserId();
+        $userId = get_user_id();
         $offset = intval($this->request->input('offset'));
         $limit = intval($this->request->input('limit'));
 

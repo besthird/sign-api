@@ -16,9 +16,9 @@ use App\Exception\BusinessException;
 use App\Request\UserLoginRequest;
 use App\Request\UserSaveRequest;
 use App\Service\Formatter\UserFormatter;
-use App\Service\UserAuth;
 use App\Service\UserService;
 use Hyperf\Di\Annotation\Inject;
+use function App\Kernel\get_user_id;
 
 class UserController extends Controller
 {
@@ -54,7 +54,7 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID, 'username is required.');
         }
 
-        $userId = UserAuth::instance()->build()->getUserId();
+        $userId = get_user_id();
 
         $result = $this->service->finishRegister($userId, $username);
 
@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function info()
     {
-        $userId = UserAuth::instance()->build()->getUserId();
+        $userId = get_user_id();
 
         $model = $this->service->info($userId);
 
@@ -111,7 +111,7 @@ class UserController extends Controller
      */
     public function save(UserSaveRequest $request)
     {
-        $userId = UserAuth::instance()->build()->getUserId();
+        $userId = get_user_id();
 
         $bool = $this->service->save($userId, $request->all());
 
