@@ -20,11 +20,18 @@ namespace App\Model;
  * @property string $mobile 手机号
  * @property string $wechat_code 微信号
  * @property string $data 自定义字段内容
+ * @property \Carbon\Carbon $last_sign_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
 class Sign extends Model
 {
+    // 签到
+    const TYPE_IN = 1;
+
+    // 签退
+    const TYPE_OUT = 2;
+
     /**
      * The table associated with the model.
      *
@@ -37,12 +44,12 @@ class Sign extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'meeting_id', 'user_id', 'type', 'nickname', 'mobile', 'wechat_code', 'data', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'meeting_id', 'user_id', 'type', 'nickname', 'mobile', 'wechat_code', 'data', 'last_sign_at', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'meeting_id' => 'integer', 'user_id' => 'integer', 'type' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'meeting_id' => 'integer', 'user_id' => 'integer', 'type' => 'integer', 'last_sign_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }

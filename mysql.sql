@@ -118,11 +118,12 @@ CREATE TABLE `sign` (
   `mobile` varchar(32) NOT NULL DEFAULT '' COMMENT '手机号',
   `wechat_code` varchar(64) NOT NULL DEFAULT '' COMMENT '微信号',
   `data` json NOT NULL COMMENT '自定义字段内容',
+  `last_sign_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `meeting_id` (`meeting_id`)
+  UNIQUE KEY `meeting_id` (`meeting_id`,`user_id`,`type`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
 
 

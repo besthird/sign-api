@@ -25,6 +25,7 @@ namespace App\Model;
  * @property int $sign_out_etime 签退结束时间
  * @property \Carbon\Carbon $created_at 签到时间
  * @property \Carbon\Carbon $updated_at 更新时间
+ * @property \App\Model\User $user
  */
 class Meeting extends Model
 {

@@ -68,4 +68,9 @@ class ErrorCode extends AbstractConstants
      * @Message("会议不存在")
      */
     const MEETING_NOT_EXIST_ERROR = 1100;
+
+    /**
+     * @Message("签到重复")
+     */
+    const SIGN_AGAIN = 1200;
 }
