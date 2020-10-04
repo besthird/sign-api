@@ -23,4 +23,11 @@ class SignDao extends Service
             ->where('type', $type)
             ->first();
     }
+
+    public function find(int $userId, int $offset, int $limit)
+    {
+        $query = Sign::query()->where('user_id', $userId);
+
+        return $this->factory->model->pagination();
+    }
 }

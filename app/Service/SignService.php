@@ -35,6 +35,11 @@ class SignService extends Service
      */
     protected $dao;
 
+    public function index(int $userId, int $offset, int $limit)
+    {
+        $this->dao->find($userId, $offset, $limit);
+    }
+
     /**
      * @param $input = [
      *     'type' => 1, // 1签到 2签退

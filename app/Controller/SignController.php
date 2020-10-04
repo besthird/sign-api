@@ -24,6 +24,20 @@ class SignController extends Controller
      */
     protected $service;
 
+    public function index()
+    {
+        $userId = get_user_id();
+        $offset = $this->request->input('offset', 0);
+        $limit = $this->request->input('limit', 10);
+
+        [$count, $items] = $this->service->index($userId, (int) $offset, (int) $limit);
+
+        return $this->response->success([
+            'count' => $count,
+            'items' => $items,
+        ]);
+    }
+
     public function sign(int $id, SignRequest $request)
     {
         $input = $request->all();
