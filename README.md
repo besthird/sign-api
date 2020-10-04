@@ -185,3 +185,30 @@ id: 会议ID
 |   mobile    | string |  手机号 非必填  |
 | wechat_code | string |  微信号 非必填  |
 |    data     | array  | 额外数据 非必填 |
+
+### 我的签到记录
+
+> GET /sign
+
+- 请求参数
+
+|  字段  | 类型  |   备注   |
+| :----: | :---: | :------: |
+| offset |  int  | 分页参数 |
+| limit  |  int  | 分页参数 |
+
+- 返回参数
+
+|        字段         |  类型  |    备注     |
+| :-----------------: | :----: | :---------: |
+|        count        |  int   |  签到总数   |
+|        items        | array  |  签到记录   |
+|  items.meeting_id   |  int   |   会议ID    |
+|     items.type      |  int   | 1签到 2签退 |
+|    items.user_id    |  int   |   用户ID    |
+|   items.nickname    | string |  签到昵称   |
+|    items.mobile     | string | 签到手机号  |
+|  items.wechat_code  | string | 签到微信号  |
+|     items.data      | object |  额外数据   |
+|    items.meeting    | object |  会议信息   |
+| items.meeting.title | string |  会议标题   |
