@@ -39,6 +39,7 @@ abstract class HttpTestCase extends TestCase
     {
         parent::__construct($name, $data, $dataName);
         $this->client = make(Testing\HttpClient::class, ['baseUri' => 'http://127.0.0.1:9501']);
+        // $this->client = make(Testing\Client::class);
     }
 
     public function __call($name, $arguments)
