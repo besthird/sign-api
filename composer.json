@@ -29,6 +29,7 @@
         "hyperf/db-connection": "2.1.x-dev",
         "hyperf/di": "2.1.x-dev",
         "hyperf/dispatcher": "2.1.x-dev",
+        "hyperf/engine-swow": "^1.0",
         "hyperf/event": "2.1.x-dev",
         "hyperf/exception-handler": "2.1.x-dev",
         "hyperf/framework": "2.1.x-dev",
