@@ -15,12 +15,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $user = $this->request->input('user', 'Hyperf');
-        $method = $this->request->getMethod();
-        return $this->response->success([
-            'user' => $user,
-            'method' => $method,
-            'message' => 'Hello Hyperf.',
-        ]);
+        return $this->response->success('Hello SignAPI.');
     }
 }
