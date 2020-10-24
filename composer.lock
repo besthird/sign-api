@@ -1517,17 +1517,17 @@
             "time": "2020-10-09T17:06:25+00:00"
         },
         {
-            "name": "hyperf/engine-swow",
+            "name": "hyperf/engine",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hyperf/engine-swow.git",
-                "reference": "b37ec9324251c79c773e2743545d548f6685c504"
+                "url": "https://github.com/hyperf/engine.git",
+                "reference": "9f9e1630605f912e725d0a8f99122887515cb051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/engine-swow/zipball/b37ec9324251c79c773e2743545d548f6685c504",
-                "reference": "b37ec9324251c79c773e2743545d548f6685c504",
+                "url": "https://api.github.com/repos/hyperf/engine/zipball/9f9e1630605f912e725d0a8f99122887515cb051",
+                "reference": "9f9e1630605f912e725d0a8f99122887515cb051",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1537,31 +1537,19 @@
                 ]
             },
             "require": {
-                "php": ">=7.3",
-                "swow/swow": "dev-develop"
-            },
-            "replace": {
-                "hyperf/engine": "*"
+                "ext-swoole": ">=4.5",
+                "php": ">=7.3"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14",
-                "hyperf/http-server": "^2.1",
-                "mockery/mockery": "^1.4",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "^9.4",
-                "psr/log": "^1.0"
-            },
-            "suggest": {
-                "hyperf/http-server": "Required to use ResponseEmitter.",
-                "psr/log": "Required to use HttpServer."
+                "swoole/ide-helper": "dev-master"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
-                },
-                "hyperf": {
-                    "config": "Hyperf\\Engine\\ConfigProvider"
                 }
             },
             "autoload": {
@@ -1577,7 +1565,7 @@
                 "hyperf",
                 "php"
             ],
-            "time": "2020-10-24T10:31:49+00:00"
+            "time": "2020-10-24T10:30:41+00:00"
         },
         {
             "name": "hyperf/event",
@@ -4449,72 +4437,6 @@
             ],
             "description": "Sign and verify stuff",
             "time": "2020-10-01T08:35:57+00:00"
-        },
-        {
-            "name": "swow/swow",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swow/swow.git",
-                "reference": "989208eb77a2f38f0cea5bba2b4fa7fb0b1a7360"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swow/swow/zipball/989208eb77a2f38f0cea5bba2b4fa7fb0b1a7360",
-                "reference": "989208eb77a2f38f0cea5bba2b4fa7fb0b1a7360",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=7.2",
-                "psr/http-client": "^1.0",
-                "psr/http-message": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16"
-            },
-            "bin": [
-                "tools/builder/swow-builder"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Swow\\": "lib/Swow"
-                },
-                "files": [
-                    "lib/Swow/Util/functions.php",
-                    "lib/Swow/Util/FileSystem/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "twose",
-                    "email": "twosee@php.net"
-                }
-            ],
-            "description": "Coroutine-based concurrency library for PHP",
-            "keywords": [
-                "async",
-                "coroutine",
-                "event",
-                "http",
-                "libcat",
-                "libuv",
-                "server",
-                "swoole",
-                "swow",
-                "websocket"
-            ],
-            "time": "2020-10-23T08:48:43+00:00"
         },
         {
             "name": "symfony/cache",
