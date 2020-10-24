@@ -18,7 +18,6 @@
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
         "ext-redis": "*",
-        "ext-swow": "*",
         "hyperf/async-queue": "2.1.x-dev",
         "hyperf/cache": "2.1.x-dev",
         "hyperf/command": "2.1.x-dev",
