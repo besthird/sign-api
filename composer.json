@@ -81,10 +81,10 @@
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
-        "analyse": "phpstan analyse --memory-limit 512M -l 0 -c phpstan.neon ./app ./config",
+        "analyse": "php -dextension=swow vendor/bin/phpstan analyse --memory-limit 512M -l 0 -c phpstan.neon ./app ./config",
         "cs-fix": "php-cs-fixer fix $1",
-        "start": "php ./bin/hyperf.php start",
-        "test": "phpunit -c phpunit.xml --colors=always"
+        "start": "php -dextension=swow bin/hyperf.php start",
+        "test": "php -dextension=swow vendor/bin/phpunit -c phpunit.xml --colors=always"
     },
     "repositories": {
         "packagist": {
