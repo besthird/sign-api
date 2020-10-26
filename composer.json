@@ -91,6 +91,10 @@
         "packagist": {
             "type": "composer",
             "url": "https://mirrors.aliyun.com/composer"
+        },
+        "packagist2": {
+            "type": "composer",
+            "url": "https://packagist.org"
         }
     }
 }
