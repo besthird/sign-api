@@ -26,3 +26,4 @@ Router::post('/meeting/del', App\Controller\MeetingController::class . '::del');
 
 Router::post('/sign/{id:\d+}', App\Controller\SignController::class . '::sign');
 Router::get('/sign', App\Controller\SignController::class . '::index');
+Router::get('/meeting/sign', App\Controller\SignController::class . '::meetingSign');

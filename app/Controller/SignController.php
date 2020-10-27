@@ -46,4 +46,21 @@ class SignController extends Controller
 
         return $this->response->success($result);
     }
+
+    /**
+     * 会议下的签到
+     */
+    public function meetingSign()
+    {
+        $meetingId = $this->request->input('meeting_id',0);
+        $offset = $this->request->input('offset', 0);
+        $limit = $this->request->input('limit', 10);
+
+        [$count, $items] = $this->service->meetingSign((int) $meetingId,(int) $offset,(int) $limit);
+
+        return $this->response->success([
+            'count' => $count,
+            'items' => $items,
+        ]);
+    }
 }

@@ -32,4 +32,13 @@ class SignDao extends Service
 
         return $this->factory->model->pagination($query, $offset, $limit);
     }
+    //会议下的签到数据
+    public function findByMeetingSign(int $meetingId, int $offset, int $limit)
+    {
+        $query = Sign::query()->with('meeting')->where('meeting_id', $meetingId);
+
+        $query->orderBy('id', 'desc');
+
+        return $this->factory->model->pagination($query, $offset, $limit);
+    }
 }

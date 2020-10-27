@@ -41,4 +41,15 @@ class SignTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testGetMeetingSign()
+    {
+        $res = $this->get('/meeting/sign', [
+            'meeting_id'=>1,
+        ], [
+            UserAuth::X_TOKEN => $this->getToken(),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }
