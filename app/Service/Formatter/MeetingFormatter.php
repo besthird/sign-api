@@ -39,6 +39,7 @@ class MeetingFormatter extends Formatter
     {
         $result = [];
         foreach ($models as $model) {
+            /* @var $model Meeting */
             $result[] = $this->base($model);
         }
         return $result;

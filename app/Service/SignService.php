@@ -86,8 +86,19 @@ class SignService extends Service
         $sign->data = Json::encode((object) ($input['data'] ?? []));
         return $sign->save();
     }
+
+    //用户参与的会议
+    public function getUserMeeting(int $userId, int $offset, int $limit)
+    {
+        [$count, $models] = $this->dao->findByUserMeeting($userId, $offset, $limit);
+
+        $result = $this->formatter->formatList($models);
+
+        return [$count, $result];
+    }
+
     //会议下的签到数据
-    public function meetingSign(int $meetingId, int $offset, int $limit)
+    public function getMeetingSign(int $meetingId, int $offset, int $limit)
     {
         [$count, $models] = $this->dao->findByMeetingSign($meetingId, $offset, $limit);
 

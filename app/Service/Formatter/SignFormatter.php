@@ -39,7 +39,6 @@ class SignFormatter extends Formatter
         if ($sign->relationLoaded('meeting')) {
             $result['meeting'] = $this->meeting->base($sign->meeting);
         }
-
         return $result;
     }
 
@@ -47,6 +46,7 @@ class SignFormatter extends Formatter
     {
         $result = [];
         foreach ($models as $model) {
+            /* @var $model Sign */
             $result[] = $this->base($model);
         }
         return $result;

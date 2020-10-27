@@ -24,8 +24,8 @@ class SignTest extends HttpTestCase
     public function testSignIn()
     {
         $res = $this->json('/sign/1', [
-            'type' => Sign::TYPE_IN,
-            'nickname' => '棒哥',
+            'type' => Sign::TYPE_OUT,
+            'nickname' => '棒哥1',
         ], [
             UserAuth::X_TOKEN => $this->getToken(),
         ]);
@@ -42,10 +42,21 @@ class SignTest extends HttpTestCase
         $this->assertSame(0, $res['code']);
     }
 
-    public function testGetMeetingSign()
+    public function testSignGetUserMeeting()
     {
-        $res = $this->get('/meeting/sign', [
-            'meeting_id'=>1,
+        $res = $this->get('/sign/get-user-meeting', [
+            'meeting_id' => 1,
+        ], [
+            UserAuth::X_TOKEN => $this->getToken(),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testSignGetMeeting()
+    {
+        $res = $this->get('/sign/get-meeting', [
+            'meeting_id' => 1,
         ], [
             UserAuth::X_TOKEN => $this->getToken(),
         ]);

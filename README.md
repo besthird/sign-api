@@ -213,10 +213,30 @@ id: 会议ID
 |    items.meeting    | object |  会议信息   |
 | items.meeting.title | string |  会议标题   |
 
+### 参与的会议
+
+> GET /sign/get-user-meeting
+
+- 请求参数
+
+|  字段  | 类型  |   备注   |
+| :----: | :---: | :------: |
+| meeting_id |  int  | 会议id |
+| offset |  int  | 分页参数 |
+| limit  |  int  | 分页参数 |
+
+- 返回参数
+
+|        字段         |  类型  |    备注     |
+| :-----------------: | :----: | :---------: |
+|        count        |  int   |  签到会议总数   |
+|    items.user_id    |  int   |   用户ID    |
+|    items.meeting    | object |  会议信息   |
+| items.meeting.title | string |  会议标题   |
 
 ### 会议下的签到记录
 
-> GET /meeting/sign
+> GET /sign/get-meeting
 
 - 请求参数
 
