@@ -54,4 +54,11 @@ class SignDao extends Service
 
         return $this->factory->model->pagination($query, $offset, $limit);
     }
+
+    public function findAll()
+    {
+        $query = Sign::query();
+
+        return $query->orderBy('id', 'asc')->get();
+    }
 }

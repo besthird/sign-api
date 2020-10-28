@@ -28,3 +28,5 @@ Router::post('/sign/{id:\d+}', App\Controller\SignController::class . '::sign');
 Router::get('/sign', App\Controller\SignController::class . '::index');
 Router::get('/sign/get-meeting', App\Controller\SignController::class . '::getMeetingSign');
 Router::get('/sign/get-user-meeting', App\Controller\SignController::class . '::getUserSignMeeting');
+Router::get('/sign/export-excul', App\Controller\SignController::class . '::exportExcul');
+

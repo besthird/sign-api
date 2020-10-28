@@ -80,4 +80,23 @@ class SignController extends Controller
             'items' => $items,
         ]);
     }
+
+    //导出所有的签到数据
+    public function exportExcul()
+    {
+        $file = BASE_PATH.'/runtime/excul/';
+        if (!is_dir($file)) {
+            mkdir($file,0777,true);
+        }
+        $name = 'sign'.time();
+        $filename = $file.$name;
+        $format = 'xlsx';
+        $this->service->download($filename,$format);
+        $this->response->response()
+            ->getBody()->write(file_get_contents($filename.'.'.$format));
+        return $this->response->response()
+            ->withAddedHeader('Content-Type','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            ->withAddedHeader('Cache-Control','max-age=0')
+            ->withAddedHeader('Content-Disposition','inline;filename='.$name.'.'.strtolower($format));
+    }
 }

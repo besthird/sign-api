@@ -21,6 +21,9 @@ use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Codec\Json;
 use HyperfX\Utils\Service;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class SignService extends Service
 {
@@ -105,5 +108,38 @@ class SignService extends Service
         $result = $this->formatter->formatList($models);
 
         return [$count, $result];
+    }
+
+
+    //签到所有数据
+    public function download($filename,$format){
+
+        $data = $this->dao->findAll();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet       = $spreadsheet->getActiveSheet();
+        //设置第一行的表头
+        $sheet->setCellValue('A1', 'id');
+        $sheet->setCellValue('B1', '姓名');
+        $sheet->setCellValue('C1', '签到类型');
+        $sheet->setCellValue('D1', '手机号');
+        $sheet->setCellValue('E1', '微信号');
+        //把数据循环写入到excel里
+        foreach ($data as $k => $v) {
+            $num = $k + 2;
+            //从第二行开始写
+            $sheet->setCellValue('A' . $num, $v['id']);
+            $sheet->setCellValue('B' . $num, $v['nickname']);
+            $sheet->setCellValue('C'. $num, $v['type']);
+            $sheet->setCellValue('D'.$num,$v['mobile']);
+            $sheet->setCellValue('E'.$num, $v['wechat_code']);
+        }
+
+        $writer   = new Xlsx($spreadsheet);
+        //这里可以写绝对路径，其他框架到这步就结束了
+        $writer->save($filename.'.'.strtolower($format));
+        //关闭连接，销毁变量
+        $spreadsheet->disconnectWorksheets();
+        unset($spreadsheet);
     }
 }
