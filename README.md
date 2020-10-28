@@ -261,3 +261,6 @@ id: 会议ID
 |     items.data      | object |  额外数据   |
 |    items.meeting    | object |  会议信息   |
 | items.meeting.title | string |  会议标题   |
+
+### 导出签到
+>/sign/export-excul
