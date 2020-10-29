@@ -44,8 +44,7 @@
         "hyperf/validation": "2.1.x-dev",
         "limingxinleo/hyperf-utils": "2.1.x-dev",
         "limingxinleo/redis-collection": "^1.2",
-        "overtrue/wechat": "^5.0",
-        "phpoffice/phpspreadsheet": "^1.15"
+        "overtrue/wechat": "^5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",

@@ -79,5 +79,4 @@ class Response
     {
         return Context::get(PsrResponseInterface::class);
     }
-
 }

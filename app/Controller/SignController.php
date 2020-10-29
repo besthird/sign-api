@@ -84,19 +84,44 @@ class SignController extends Controller
     //导出所有的签到数据
     public function exportExcul()
     {
-        $file = BASE_PATH.'/runtime/excul/';
-        if (!is_dir($file)) {
-            mkdir($file,0777,true);
+        $file = BASE_PATH . '/runtime/csv';
+        if (! is_dir($file)) {
+            mkdir($file, 0777, true);
         }
-        $name = 'sign'.time();
-        $filename = $file.$name;
-        $format = 'xlsx';
-        $this->service->download($filename,$format);
-        $this->response->response()
-            ->getBody()->write(file_get_contents($filename.'.'.$format));
+        $filename = 'sign' . time();
+        $format = 'csv';
+        $signData = $this->service->download();
+
+        $head = ['id', '微信昵称', '类型', '手机号', '微信号','创建时间'];  //表头
+        foreach ($head as $k => $v) {
+            $head[$k] = $this->service->gbk($v);
+        }
+        $fp = fopen($file . '/' . $filename . '.' . $format, 'w'); //打开
+        fputcsv($fp, $head);
+
+        $data = [];
+        foreach ($signData as $k => $v) {
+            $data['id'] = $v['id'];
+            $data['nickname'] = $this->service->gbk($v['nickname']);
+            //1签到2签退3补签到4补签退
+            $data['type'] = $this->service->gbk($this->service->getSignType($v['type']));
+            $data['mobile'] = $v['mobile'];
+            $data['wechat_code'] = $v['wechat_code'];
+            $data['created_at'] = $v['created_at'];
+            fputcsv($fp, $data);
+        }
+        fclose($fp);
+        $this->response->response()->getBody()->write(file_get_contents($file . '/' . $filename . '.' . $format));
+
+        unlink($file . '/' . $filename . '.' . $format);
+
         return $this->response->response()
-            ->withAddedHeader('Content-Type','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-            ->withAddedHeader('Cache-Control','max-age=0')
-            ->withAddedHeader('Content-Disposition','inline;filename='.$name.'.'.strtolower($format));
+            ->withAddedHeader('Content-Type', 'text/csv')
+            ->withAddedHeader('Cache-Control', 'must-revalidate,post-check=0,pre-check=0')
+            ->withAddedHeader('Content-Disposition', 'attachment;filename=' . $filename . '.' . strtolower($format))
+            ->withAddedHeader('Expires', '0')
+            ->withAddedHeader('Pragma', 'public');
     }
+
+
 }
