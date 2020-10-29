@@ -112,8 +112,9 @@ class SignService extends Service
     {
         return $this->dao->findAll();
     }
+
     /**
-     * 获取签到类型
+     * 获取签到类型.
      * @param $type
      * @return string
      */
@@ -136,6 +137,7 @@ class SignService extends Service
 
         return $val;
     }
+
     //utf8转gbk
     public function gbk($data)
     {

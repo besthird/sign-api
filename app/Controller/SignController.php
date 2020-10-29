@@ -92,7 +92,7 @@ class SignController extends Controller
         $format = 'csv';
         $signData = $this->service->download();
 
-        $head = ['id', '微信昵称', '类型', '手机号', '微信号','创建时间'];  //表头
+        $head = ['id', '微信昵称', '类型', '手机号', '微信号', '创建时间'];  //表头
         foreach ($head as $k => $v) {
             $head[$k] = $this->service->gbk($v);
         }
@@ -122,6 +122,4 @@ class SignController extends Controller
             ->withAddedHeader('Expires', '0')
             ->withAddedHeader('Pragma', 'public');
     }
-
-
 }
