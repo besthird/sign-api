@@ -37,4 +37,16 @@ class MeetingDao extends Service
 
         return $this->factory->model->pagination($query, $offset, $limit);
     }
+
+    /**
+     * @param int $limit
+     *                   我参与的会议
+     */
+    public function findSignedMeeting(int $userId, int $offset, int $limit)
+    {
+        [$count, $ids] = di()->get(SignDao::class)->getMeetingPagination($userId, $offset, $limit);
+        $models = Meeting::findManyFromCache($ids);
+
+        return [$count, $models];
+    }
 }

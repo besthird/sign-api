@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace App\Service\Dao;
 
 use App\Model\Sign;
+use Hyperf\DbConnection\Db;
 use HyperfX\Utils\Service;
 
 class SignDao extends Service
@@ -33,16 +34,18 @@ class SignDao extends Service
         return $this->factory->model->pagination($query, $offset, $limit);
     }
 
-    //参与会议
-    public function findByUserMeeting(int $userId, int $offset, int $limit)
+    public function getMeetingPagination(int $userId, int $offset, int $limit)
     {
-        $query = Sign::query()->with('meeting')->where('user_id', $userId);
+        $sql = 'SELECT meeting_id FROM sign WHERE user_id = ? GROUP BY meeting_id ORDER BY meeting_id DESC LIMIT ? OFFSET ?;';
+        $res = Db::select($sql, [$userId, $limit, $offset]);
+        $ids = [];
+        foreach ($res as $item) {
+            $ids[] = $item->meeting_id;
+        }
 
-        $query->orderBy('id', 'desc');
-
-        $query->groupBy(['meeting_id']);
-
-        return $this->factory->model->pagination($query, $offset, $limit);
+        $sql = 'SELECT COUNT(DISTINCT meeting_id) as `count` FROM sign WHERE user_id = ?;';
+        $res = Db::selectOne($sql, [$userId]);
+        return [$res->count, $ids];
     }
 
     //会议下的签到数据

@@ -16,6 +16,7 @@ use App\Exception\BusinessException;
 use App\Model\Sign;
 use App\Service\Dao\MeetingDao;
 use App\Service\Dao\SignDao;
+use App\Service\Formatter\MeetingFormatter;
 use App\Service\Formatter\SignFormatter;
 use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
@@ -87,12 +88,12 @@ class SignService extends Service
         return $sign->save();
     }
 
-    //用户参与的会议
+    // 用户参与的会议
     public function getUserMeeting(int $userId, int $offset, int $limit)
     {
-        [$count, $models] = $this->dao->findByUserMeeting($userId, $offset, $limit);
+        [$count, $models] = di()->get(MeetingDao::class)->findSignedMeeting($userId, $offset, $limit);
 
-        $result = $this->formatter->formatList($models);
+        $result = di()->get(MeetingFormatter::class)->formatList($models);
 
         return [$count, $result];
     }

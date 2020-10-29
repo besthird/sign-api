@@ -230,9 +230,7 @@ id: 会议ID
 |        字段         |  类型  |    备注     |
 | :-----------------: | :----: | :---------: |
 |        count        |  int   |  签到会议总数   |
-|    items.user_id    |  int   |   用户ID    |
-|    items.meeting    | object |  会议信息   |
-| items.meeting.title | string |  会议标题   |
+| items.title | string |  会议标题   |
 
 ### 会议下的签到记录
 
