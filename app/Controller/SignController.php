@@ -84,9 +84,9 @@ class SignController extends Controller
     //导出所有的签到数据
     public function exportExcul()
     {
-        $file = BASE_PATH . '/runtime/csv';
-        if (! is_dir($file)) {
-            mkdir($file, 0777, true);
+        $path = BASE_PATH . '/runtime/csv';
+        if (! is_dir($path)) {
+            mkdir($path, 0777, true);
         }
         $filename = 'sign' . time();
         $format = 'csv';
@@ -96,7 +96,7 @@ class SignController extends Controller
         foreach ($head as $k => $v) {
             $head[$k] = $this->service->gbk($v);
         }
-        $fp = fopen($file . '/' . $filename . '.' . $format, 'w'); //打开
+        $fp = fopen($path . '/' . $filename . '.' . $format, 'w'); //打开
         fputcsv($fp, $head);
 
         $data = [];
@@ -111,9 +111,9 @@ class SignController extends Controller
             fputcsv($fp, $data);
         }
         fclose($fp);
-        $this->response->response()->getBody()->write(file_get_contents($file . '/' . $filename . '.' . $format));
+        $this->response->response()->getBody()->write(file_get_contents($path . '/' . $filename . '.' . $format));
 
-        unlink($file . '/' . $filename . '.' . $format);
+        unlink($path . '/' . $filename . '.' . $format);
 
         return $this->response->response()
             ->withAddedHeader('Content-Type', 'text/csv')
