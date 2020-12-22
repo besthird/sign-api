@@ -23,6 +23,7 @@ Router::post('/meeting/{id:\d+}', App\Controller\MeetingController::class . '::u
 Router::get('/meeting/{id:\d+}', App\Controller\MeetingController::class . '::info');
 Router::get('/meeting', App\Controller\MeetingController::class . '::index');
 Router::post('/meeting/del', App\Controller\MeetingController::class . '::del');
+Router::get('/meeting/{id:\d+}/qrcode', App\Controller\MeetingController::class . '::qrcode');
 
 Router::post('/sign/{id:\d+}', App\Controller\SignController::class . '::sign');
 Router::get('/sign', App\Controller\SignController::class . '::index');

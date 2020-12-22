@@ -62,7 +62,7 @@ class MeetingController extends Controller
         $offset = intval($this->request->input('offset'));
         $limit = intval($this->request->input('limit'));
 
-        [$count,$items] = $this->service->getUserMeeting($userId, $offset, $limit);
+        [$count, $items] = $this->service->getUserMeeting($userId, $offset, $limit);
 
         return $this->response->success(['count' => $count, 'items' => $items]);
     }
@@ -78,6 +78,11 @@ class MeetingController extends Controller
         return $this->response->success(
             $this->formatter->base($model)
         );
+    }
+
+    public function qrcode(int $id)
+    {
+        return $this->service->qrcode($id);
     }
 
     /**

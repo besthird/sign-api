@@ -33,6 +33,12 @@ class MeetingService extends Service
      */
     protected $formatter;
 
+    /**
+     * @Inject
+     * @var WeChat
+     */
+    protected $wechat;
+
     public function update(int $meetingId, int $userId, array $data)
     {
         if ($meetingId > 0) {
@@ -58,9 +64,18 @@ class MeetingService extends Service
         return $model->save();
     }
 
-    public function info($id)
+    public function info(int $id)
     {
         return $this->dao->first($id, true);
+    }
+
+    public function qrcode(int $id)
+    {
+        $app = $this->wechat->app();
+        $scene = http_build_query([
+            'id' => $id,
+        ]);
+        return $app->app_code->getUnlimit($scene);
     }
 
     public function getUserMeeting(int $userId, int $offset, int $limit)

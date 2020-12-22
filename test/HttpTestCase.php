@@ -13,6 +13,8 @@ namespace HyperfTest;
 
 use App\Service\Dao\UserDao;
 use App\Service\UserAuth;
+use GuzzleHttp\Client;
+use Hyperf\Guzzle\CoroutineHandler;
 use Hyperf\Testing;
 use PHPUnit\Framework\TestCase;
 
@@ -45,6 +47,15 @@ abstract class HttpTestCase extends TestCase
     public function __call($name, $arguments)
     {
         return $this->client->{$name}(...$arguments);
+    }
+
+    public function getClient(): Client
+    {
+        return new Client([
+            'handler' => new CoroutineHandler(),
+            'base_uri' => 'http://127.0.0.1:9501',
+            'timeout' => 2,
+        ]);
     }
 
     public function getToken()

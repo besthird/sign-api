@@ -13,6 +13,7 @@ namespace HyperfTest\Cases;
 
 use App\Constants\ErrorCode;
 use App\Service\UserAuth;
+use GuzzleHttp\RequestOptions;
 use HyperfTest\HttpTestCase;
 
 /**
@@ -47,6 +48,17 @@ class MeetingTest extends HttpTestCase
         ]);
 
         $this->assertSame(0, $res['code']);
+    }
+
+    public function testMeetingQrcode()
+    {
+        $res = $this->getClient()->get('/meeting/1/qrcode', [
+            RequestOptions::HEADERS => [
+                UserAuth::X_TOKEN => $this->getToken(),
+            ],
+        ]);
+
+        $this->assertSame(200, $res->getStatusCode());
     }
 
     public function testMeetingGetUserMeeting()
