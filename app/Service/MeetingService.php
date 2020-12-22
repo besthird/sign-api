@@ -69,13 +69,17 @@ class MeetingService extends Service
         return $this->dao->first($id, true);
     }
 
-    public function qrcode(int $id)
+    public function qrcode(int $id, bool $isDownload)
     {
         $app = $this->wechat->app();
         $scene = http_build_query([
             'id' => $id,
         ]);
-        return $app->app_code->getUnlimit($scene);
+        $result = $app->app_code->getUnlimit($scene);
+        if (! $isDownload) {
+            $result = $result->withHeader('Content-Disposition', '');
+        }
+        return $result;
     }
 
     public function getUserMeeting(int $userId, int $offset, int $limit)

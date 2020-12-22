@@ -82,7 +82,8 @@ class MeetingController extends Controller
 
     public function qrcode(int $id)
     {
-        return $this->service->qrcode($id);
+        $isDownload = (bool) $this->request->input('is_download', 0);
+        return $this->service->qrcode($id, $isDownload);
     }
 
     /**
