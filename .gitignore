@@ -9,5 +9,4 @@ vendor/
 .phpintel/
 .env
 .DS_Store
-wxapp
 *.cache
