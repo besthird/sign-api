@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: sign
-# Generation Time: 2020-09-11 07:26:59 +0000
+# Generation Time: 2020-12-22 03:00:06 +0000
 # ************************************************************
 
 
@@ -78,6 +78,15 @@ CREATE TABLE `meeting` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到模板表';
 
+LOCK TABLES `meeting` WRITE;
+/*!40000 ALTER TABLE `meeting` DISABLE KEYS */;
+
+INSERT INTO `meeting` (`id`, `user_id`, `title`, `content`, `sign_type`, `user_limit`, `status`, `sign_in_btime`, `sign_in_etime`, `sign_out_btime`, `sign_out_etime`, `created_at`, `updated_at`)
+VALUES
+	(1,1,'标题','会议内容',1,100,1,1608604902,1608612102,1608604902,1608612102,'2020-09-20 16:17:39','2020-12-22 10:41:42');
+
+/*!40000 ALTER TABLE `meeting` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table meeting_template
@@ -126,6 +135,15 @@ CREATE TABLE `sign` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户签到表';
 
+LOCK TABLES `sign` WRITE;
+/*!40000 ALTER TABLE `sign` DISABLE KEYS */;
+
+INSERT INTO `sign` (`id`, `meeting_id`, `user_id`, `type`, `nickname`, `mobile`, `wechat_code`, `data`, `last_sign_at`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,1,'棒哥1','','','{}','2020-12-22 10:41:42','2020-10-04 13:55:38','2020-12-22 10:41:42');
+
+/*!40000 ALTER TABLE `sign` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table sign_field
@@ -209,8 +227,9 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `username`, `password`, `nickname`, `mobile`, `wechat_code`, `profession`, `gender`, `head_img`, `created_at`, `updated_at`)
 VALUES
-	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','tester','','wx54934','php',1,'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=106057627,1188041136&fm=26&gp=0.jpg','2020-08-25 14:53:16','2020-09-11 14:53:19'),
-	(3,NULL,'','','','','',0,'','2020-09-08 11:27:36','2020-09-08 11:27:36');
+	(1,'tester','$2y$10$72SSS541tnAif684UbbVvONnMJUArGF7xgEmV/nl0fX/aqV6Hu88C','tester','','wx54934','php',1,'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=106057627,1188041136&fm=26&gp=0.jpg','2020-08-25 14:53:16','2020-12-22 10:41:42'),
+	(3,NULL,'','','','','',0,'','2020-09-08 11:27:36','2020-09-08 11:27:36'),
+	(4,'tester1','$2y$10$1w6E66Qq34UjqP6kNgjaSujDgH5.5yPiBW1zekhWrcCGELg.Dug6C','','','','',0,'','2020-09-20 16:17:39','2020-09-20 16:17:39');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -45,6 +45,10 @@ jobs:
         run: export TRAVIS_BUILD_DIR=$(pwd) && bash ./.github/setup.mysql.sh
       - name: Run Scripts Before Test
         run: cp .env.example .env
+      - name: Run Server
+        run: |
+          php bin/hyperf.php
+          php bin/hyperf.php start &
       - name: Run Test Cases
         run: |
           composer analyse
