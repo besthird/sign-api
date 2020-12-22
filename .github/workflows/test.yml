@@ -6,6 +6,7 @@ env:
   SW_VERSION: '4.5.9'
   WECHAT_APPID: ${{ secrets.WECHAT_APPID }}
   WECHAT_SECRET: ${{ secrets.WECHAT_SECRET }}
+  SCAN_CACHEABLE: (true)
 jobs:
   ci:
     name: Test on PHP ${{ matrix.php-version }}
