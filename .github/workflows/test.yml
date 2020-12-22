@@ -24,6 +24,10 @@ jobs:
           tools: phpize
           ini-values: extension=swoole, opcache.enable_cli=1, swoole.use_shortname='Off'
           coverage: none
+      - name: Setup Services
+        run: |
+          docker run --name mysql -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql:5.7 --bind-address=0.0.0.0 --default-authentication-plugin=mysql_native_password
+          docker run --name redis -p 6379:6379 -d redis
       - name: Setup Swoole
         run: |
           wget https://github.com/swoole/swoole-src/archive/v${SW_VERSION}.tar.gz -O swoole.tar.gz
@@ -37,6 +41,10 @@ jobs:
           sudo make install
       - name: Setup Packages
         run: composer update -o
+      - name: Setup Mysql
+        run: export TRAVIS_BUILD_DIR=$(pwd) && bash ./.github/setup.mysql.sh
+      - name: Run Scripts Before Test
+        run: cp .env.example .env
       - name: Run Test Cases
         run: |
           composer analyse
