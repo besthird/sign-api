@@ -72,7 +72,7 @@
 
 ### 完成注册
 
-> POST /user/fin-register
+> POST /user/finish-register
 
 - 请求参数
 
