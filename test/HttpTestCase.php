@@ -54,7 +54,7 @@ abstract class HttpTestCase extends TestCase
         return new Client([
             'handler' => new CoroutineHandler(),
             'base_uri' => 'http://127.0.0.1:9501',
-            'timeout' => 2,
+            'timeout' => 20,
         ]);
     }
 
