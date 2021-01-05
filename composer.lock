@@ -1726,22 +1726,22 @@
             ],
             "support": {
                 "issues": "https://github.com/hyperf/guzzle/issues",
-                "source": "https://github.com/hyperf/guzzle/tree/master"
+                "source": "https://github.com/hyperf/guzzle/tree/v2.1.1"
             },
             "time": "2020-12-28T03:05:18+00:00"
         },
         {
             "name": "hyperf/http-message",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperf/http-message.git",
-                "reference": "474c31134675b737b2afe796ba9a2562ff64f1cb"
+                "reference": "27080f8802fe3d78bf0980381a57775038f8ea73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/http-message/zipball/474c31134675b737b2afe796ba9a2562ff64f1cb",
-                "reference": "474c31134675b737b2afe796ba9a2562ff64f1cb",
+                "url": "https://api.github.com/repos/hyperf/http-message/zipball/27080f8802fe3d78bf0980381a57775038f8ea73",
+                "reference": "27080f8802fe3d78bf0980381a57775038f8ea73",
                 "shasum": ""
             },
             "require": {
@@ -1782,9 +1782,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hyperf/http-message/issues",
-                "source": "https://github.com/hyperf/http-message/tree/v2.1.0"
+                "source": "https://github.com/hyperf/http-message/tree/v2.1.1"
             },
-            "time": "2020-12-27T06:12:45+00:00"
+            "time": "2020-12-28T03:05:18+00:00"
         },
         {
             "name": "hyperf/http-server",
@@ -2507,7 +2507,7 @@
             ],
             "support": {
                 "issues": "https://github.com/hyperf/validation/issues",
-                "source": "https://github.com/hyperf/validation/tree/master"
+                "source": "https://github.com/hyperf/validation/tree/v2.1.1"
             },
             "time": "2020-12-28T03:05:18+00:00"
         },
@@ -3163,16 +3163,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "3.1.0",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "4c94d6cbf5e9a0963c597ad7d0b998f147acd9c3"
+                "reference": "1eb8ed6b08f19a999eb28a54cd5ce3b2df692213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/4c94d6cbf5e9a0963c597ad7d0b998f147acd9c3",
-                "reference": "4c94d6cbf5e9a0963c597ad7d0b998f147acd9c3",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/1eb8ed6b08f19a999eb28a54cd5ce3b2df692213",
+                "reference": "1eb8ed6b08f19a999eb28a54cd5ce3b2df692213",
                 "shasum": ""
             },
             "require": {
@@ -3216,7 +3216,7 @@
             ],
             "support": {
                 "issues": "https://github.com/overtrue/socialite/issues",
-                "source": "https://github.com/overtrue/socialite/tree/3.1.0"
+                "source": "https://github.com/overtrue/socialite/tree/3.1.2"
             },
             "funding": [
                 {
@@ -3224,7 +3224,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-28T07:45:18+00:00"
+            "time": "2021-01-05T07:01:35+00:00"
         },
         {
             "name": "overtrue/wechat",
