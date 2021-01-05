@@ -56,10 +56,18 @@ class MeetingService extends Service
         $model->sign_type = $data['sign_type'];
         $model->user_limit = $data['user_limit'];
         $model->status = $data['status'];
-        $model->sign_in_btime = $data['sign_in_btime'] ?? 0;
-        $model->sign_in_etime = $data['sign_in_etime'] ?? 0;
-        $model->sign_out_btime = $data['sign_out_btime'] ?? 0;
-        $model->sign_out_etime = $data['sign_out_etime'] ?? 0;
+        if ($time = $data['sign_in_btime'] ?? 0) {
+            $model->sign_in_btime = $this->factory->date->load($time)->getTimestamp();
+        }
+        if ($time = $data['sign_in_etime'] ?? 0) {
+            $model->sign_in_etime = $this->factory->date->load($time)->getTimestamp();
+        }
+        if ($time = $data['sign_out_btime'] ?? 0) {
+            $model->sign_out_btime = $this->factory->date->load($time)->getTimestamp();
+        }
+        if ($time = $data['sign_out_etime'] ?? 0) {
+            $model->sign_out_etime = $this->factory->date->load($time)->getTimestamp();
+        }
 
         return $model->save();
     }
